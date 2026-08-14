@@ -1,0 +1,31 @@
+import { RootDocument } from "#/modules/root-document";
+import "@morph-css/kit/css";
+import operonMorphCss from "@operon/ui/dist/morphcss.css?url";
+import operonCss from "@operon/ui/dist/style.css?url";
+import { createRootRouteWithContext } from "@tanstack/react-router";
+
+import type { QueryClient } from "@tanstack/react-query";
+
+interface MyRouterContext {
+  queryClient: QueryClient;
+}
+
+export const Route = createRootRouteWithContext<MyRouterContext>()({
+  head: () => ({
+    meta: [
+      { charSet: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { title: "Operon - The Unified Cloud Platform" },
+    ],
+    links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" },
+      { rel: "preload", as: "style", href: operonCss },
+      { rel: "preload", as: "style", href: operonMorphCss },
+      { rel: "stylesheet", href: operonCss },
+      { rel: "stylesheet", href: operonMorphCss },
+    ],
+  }),
+  shellComponent: RootDocument,
+});
