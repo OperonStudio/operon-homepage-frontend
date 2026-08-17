@@ -3,6 +3,8 @@ import { CLOUD_SERVICES } from "../content/services";
 import * as classes from "../style";
 import { ServiceCard } from "./ServiceCard";
 
+const CATEGORIES = ["Compose", "Codeblocks", "Analytics"] as const;
+
 export const CloudSuiteGrid = () => {
   return (
     <section id="products-services" {...classes.suiteSectionStyle}>
@@ -13,11 +15,24 @@ export const CloudSuiteGrid = () => {
         serverless micro-services, and zero-code analytics tagging in one console.
       </Box>
 
-      <Box {...classes.suiteGridStyle}>
-        {CLOUD_SERVICES.map((service) => (
-          <ServiceCard key={service.id} service={service} />
-        ))}
-      </Box>
+      {CATEGORIES.map((category) => {
+        const categoryServices = CLOUD_SERVICES.filter(
+          (s) => s.category === category,
+        );
+        return (
+          <Box key={category} {...classes.suiteCategoryBlockStyle}>
+            <Box {...classes.suiteCategoryRailStyle}>
+              <span {...classes.suiteCategoryLabelStyle}>{category}</span>
+              <span {...classes.suiteCategoryLineStyle} aria-hidden="true" />
+            </Box>
+            <Box {...classes.suiteGridStyle}>
+              {categoryServices.map((service) => (
+                <ServiceCard key={service.id} service={service} />
+              ))}
+            </Box>
+          </Box>
+        );
+      })}
     </section>
   );
 };

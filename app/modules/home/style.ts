@@ -525,85 +525,148 @@ export const newsCardLinkStyle = css({
 
 // ── Operon Cloud Suite 12-Service Grid ─────────────────────────────────────
 
+const suitePalette = {
+  ink: "#0B0E14",
+  line: "#E3E7EF",
+  lineFaint: "#EEF1F6",
+  textPrimary: "#151924",
+  textMuted: "#5E6577",
+  signal: "#C97B12", // muted daylight amber — same hue family as hero, dialed down for light bg
+  signalGhost: "#FDF3E4",
+  live: "#0D9A73",
+  liveGhost: "#E6F7F1",
+  new: "#3D5AFE",
+  newGhost: "#EBEEFF",
+};
+
 export const suiteSectionStyle = css({
   width: "100%",
   maxWidth: "1200px",
-  padding: "48px 24px 72px",
+  padding: "48px 24px 80px",
+});
+
+export const suiteCategoryBlockStyle = css({
+  marginTop: "40px",
+  "&:first-of-type": {
+    marginTop: "36px",
+  },
+});
+
+export const suiteCategoryRailStyle = css({
+  display: "flex",
+  alignItems: "center",
+  gap: "14px",
+  marginBottom: "16px",
+});
+
+export const suiteCategoryLabelStyle = css({
+  fontFamily: "var(--operon-typography-mono)",
+  fontSize: "11px",
+  fontWeight: "700",
+  textTransform: "uppercase",
+  letterSpacing: "0.1em",
+  color: suitePalette.textMuted,
+  whiteSpace: "nowrap",
+});
+
+export const suiteCategoryLineStyle = css({
+  flex: 1,
+  height: "1px",
+  backgroundColor: suitePalette.line,
 });
 
 export const suiteGridStyle = css({
   display: "grid",
   gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
-  gap: "16px",
-  width: "100%",
+  gap: "1px",
+  backgroundColor: suitePalette.line,
+  border: `1px solid ${suitePalette.line}`,
 });
 
 export const serviceCardStyle = css({
+  position: "relative",
   display: "flex",
-  gap: "14px",
-  padding: "18px",
-  backgroundColor: "var(--operon-color-surface)",
-  border: "1px solid var(--operon-color-border)",
-  borderRadius: "var(--operon-radius-md)",
-  textDecoration: "none",
+  flexDirection: "column",
+  gap: "12px",
+  padding: "20px",
+  backgroundColor: "#ffffff",
   color: "inherit",
-  transition:
-    "border-color 150ms ease, background-color 150ms ease, transform 150ms ease",
   cursor: "pointer",
+  textDecoration: "none",
+  transition: "background-color 150ms ease",
   "&:hover": {
-    borderColor: "var(--operon-color-primary)",
-    backgroundColor: "var(--operon-color-primary-ghost)",
-    transform: "translateY(-2px)",
+    backgroundColor: suitePalette.lineFaint,
+  },
+  "&:hover [data-icon-well]": {
+    borderColor: suitePalette.signal,
+    color: suitePalette.signal,
   },
 });
 
 export const serviceIconWrapperStyle = css({
-  width: "36px",
-  height: "36px",
-  borderRadius: "var(--operon-radius-sm)",
-  backgroundColor: "var(--operon-color-primary-light)",
-  color: "var(--operon-color-primary)",
+  width: "32px",
+  height: "32px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  flexShrink: 0,
+  border: `1px solid ${suitePalette.line}`,
+  borderRadius: "4px",
+  color: suitePalette.textPrimary,
+  transition: "border-color 150ms ease, color 150ms ease",
+});
+
+export const serviceCardBodyStyle = css({
+  display: "flex",
+  flexDirection: "column",
+  gap: "4px",
 });
 
 export const serviceNameStyle = css({
-  fontSize: "14px",
+  fontSize: "14.5px",
   fontWeight: "700",
-  color: "var(--operon-color-text)",
+  color: suitePalette.textPrimary,
   lineHeight: 1.3,
-  display: "flex",
-  alignItems: "center",
-  gap: "6px",
 });
 
 export const serviceDescStyle = css({
-  fontSize: "12px",
-  color: "var(--operon-color-text-muted)",
-  lineHeight: "1.4",
-  marginTop: "4px",
+  fontSize: "12.5px",
+  color: suitePalette.textMuted,
+  lineHeight: "1.5",
 });
 
-export const serviceBadgeStyle = css({
-  fontSize: "9px",
+export const serviceTagStyle = css({
+  position: "absolute",
+  top: "16px",
+  right: "16px",
+  fontFamily: "var(--operon-typography-mono)",
+  fontSize: "9.5px",
   fontWeight: "700",
-  padding: "2px 6px",
-  borderRadius: "var(--operon-radius-xs)",
-  backgroundColor: "var(--operon-color-primary-ghost)",
-  color: "var(--operon-color-primary)",
   textTransform: "uppercase",
+  letterSpacing: "0.05em",
+  padding: "2px 7px",
+  borderRadius: "3px",
+  "&[data-tag='core']": {
+    color: suitePalette.textMuted,
+    backgroundColor: suitePalette.lineFaint,
+  },
+  "&[data-tag='popular']": {
+    color: suitePalette.signal,
+    backgroundColor: suitePalette.signalGhost,
+  },
+  "&[data-tag='new']": {
+    color: suitePalette.new,
+    backgroundColor: suitePalette.newGhost,
+  },
 });
 
 // ── Enterprise Security Section ───────────────────────────────────────────
 
 export const securitySectionStyle = css({
   width: "100%",
-  backgroundColor: "var(--operon-color-surface-raised)",
-  borderTop: "1px solid var(--operon-color-border)",
-  borderBottom: "1px solid var(--operon-color-border)",
-  padding: "80px 24px",
+  backgroundColor: suitePalette.lineFaint,
+  borderTop: `1px solid ${suitePalette.line}`,
+  borderBottom: `1px solid ${suitePalette.line}`,
+  padding: "72px 24px 88px",
   display: "flex",
   justifyContent: "center",
 });
@@ -618,38 +681,65 @@ export const securityInnerStyle = css({
 
 export const securityGridStyle = css({
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-  gap: "20px",
+  gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+  gap: "1px",
+  backgroundColor: suitePalette.line,
+  border: `1px solid ${suitePalette.line}`,
   width: "100%",
   marginTop: "36px",
 });
 
 export const securityCardStyle = css({
-  padding: "24px",
-  backgroundColor: "var(--operon-color-surface)",
-  border: "1px solid var(--operon-color-border)",
-  borderRadius: "var(--operon-radius-lg)",
+  padding: "20px",
+  backgroundColor: "#ffffff",
   display: "flex",
   flexDirection: "column",
   gap: "12px",
   position: "relative",
+  transition: "background-color 150ms ease",
+  "&:hover": {
+    backgroundColor: suitePalette.lineFaint,
+  },
+  "&:hover [data-icon-well]": {
+    borderColor: suitePalette.signal,
+    color: suitePalette.signal,
+  },
+});
+
+export const securityIconWrapperStyle = css({
+  width: "32px",
+  height: "32px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  border: `1px solid ${suitePalette.line}`,
+  borderRadius: "4px",
+  color: suitePalette.textPrimary,
+  transition: "border-color 150ms ease, color 150ms ease",
 });
 
 export const securityStatStyle = css({
-  fontSize: "24px",
+  fontSize: "22px",
   fontWeight: "800",
-  color: "var(--operon-color-primary)",
+  color: suitePalette.signal,
   fontFamily: "var(--operon-typography-mono)",
 });
 
+export const securityCardBodyStyle = css({
+  display: "flex",
+  flexDirection: "column",
+  gap: "4px",
+});
+
 export const securityCardTitleStyle = css({
-  fontSize: "16px",
+  fontSize: "14.5px",
   fontWeight: "700",
-  color: "var(--operon-color-text)",
+  color: suitePalette.textPrimary,
+  lineHeight: 1.3,
 });
 
 export const securityCardDescStyle = css({
-  fontSize: "13px",
-  color: "var(--operon-color-text-muted)",
+  fontSize: "12.5px",
+  color: suitePalette.textMuted,
   lineHeight: "1.5",
 });

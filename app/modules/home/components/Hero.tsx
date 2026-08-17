@@ -1,17 +1,12 @@
 import { Box, Button } from "@operon/ui";
 import { Link } from "@tanstack/react-router";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import * as classes from "../style";
 
 const legacyNodes = ["PR", "Build", "Deploy"];
 const operonNodes = ["Rule Change", "Edge Sync"];
 
 export const Hero = () => {
-  const [activePreset, setActivePreset] = useState<"standard" | "targeted">(
-    "targeted",
-  );
-  const [isTaggingActive, setIsTaggingActive] = useState(true);
-
   return (
     <section {...classes.heroSectionStyle}>
       <Box {...classes.heroGridOverlayStyle} aria-hidden="true" />
@@ -65,33 +60,6 @@ export const Hero = () => {
         <Box {...classes.signalPanelStyle}>
           <Box {...classes.panelHeaderStyle}>
             <Box {...classes.panelHeaderLabelStyle}>Rule engine</Box>
-
-            {/* <Box
-              {...classes.segmentedControlStyle}
-              role="tablist"
-              aria-label="Rule preset"
-            >
-              <button
-                type="button"
-                role="tab"
-                aria-selected={activePreset === "standard"}
-                data-active={activePreset === "standard"}
-                onClick={() => setActivePreset("standard")}
-                {...classes.segmentButtonStyle}
-              >
-                Standard Rule
-              </button>
-              <button
-                type="button"
-                role="tab"
-                aria-selected={activePreset === "targeted"}
-                data-active={activePreset === "targeted"}
-                onClick={() => setActivePreset("targeted")}
-                {...classes.segmentButtonStyle}
-              >
-                VIP Targeted Rule
-              </button>
-            </Box> */}
           </Box>
 
           {/* Routing diagram: zero-release visualization */}
@@ -146,51 +114,6 @@ export const Hero = () => {
               </span>
             </Box>
           </Box>
-
-          {/* Live readout */}
-          {/* <Box {...classes.readoutPanelStyle} aria-live="polite">
-            <Box {...classes.readoutTopRowStyle}>
-              <Box
-                {...classes.statusTagStyle}
-                data-variant={activePreset === "targeted" ? "live" : "info"}
-              >
-                {activePreset === "targeted"
-                  ? "VIP exclusive · 35% off"
-                  : "Seasonal · 15% off"}
-              </Box>
-
-              <button
-                type="button"
-                aria-pressed={isTaggingActive}
-                onClick={() => setIsTaggingActive((prev) => !prev)}
-                {...classes.tagToggleStyle}
-                data-active={isTaggingActive}
-              >
-                <Eye size={12} />
-                {isTaggingActive ? "Visual tag on" : "Tag off"}
-              </button>
-            </Box>
-
-            <Box {...classes.readoutHeadlineStyle}>
-              {activePreset === "targeted"
-                ? "Exclusive VIP launch — 35% discount + express delivery"
-                : "Summer product collection — 15% instant discount"}
-            </Box>
-
-            <Box {...classes.readoutDescStyle}>
-              {activePreset === "targeted"
-                ? "Rule evaluated: high-LTV audience segment. Synchronized via the Operon edge engine — no code deployment."
-                : "Rule evaluated: default fallback schema. Synchronized via the Operon edge engine — no code deployment."}
-            </Box>
-
-            {isTaggingActive && (
-              <Box {...classes.instrumentationTagStyle}>
-                <Check size={12} />
-                Instrumentation tag active:{" "}
-                <code {...classes.inlineCodeStyle}>cta_checkout_click</code>
-              </Box>
-            )}
-          </Box> */}
         </Box>
       </Box>
     </section>

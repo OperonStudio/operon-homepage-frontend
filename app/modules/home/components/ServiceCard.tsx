@@ -9,19 +9,20 @@ interface ServiceCardProps {
 
 export const ServiceCard = ({ service }: ServiceCardProps) => {
   const Icon = service.icon;
+  const tagType = service.badge?.toLowerCase();
 
   return (
     <Link to={service.href} {...classes.serviceCardStyle}>
-      <Box {...classes.serviceIconWrapperStyle}>
-        <Icon size={18} />
-      </Box>
-      <Box style={{ flex: 1, minWidth: 0 }}>
-        <span {...classes.serviceNameStyle}>
-          {service.name}
-          {service.badge && (
-            <span {...classes.serviceBadgeStyle}>{service.badge}</span>
-          )}
+      {service.badge && (
+        <span {...classes.serviceTagStyle} data-tag={tagType}>
+          {service.badge}
         </span>
+      )}
+      <Box {...classes.serviceIconWrapperStyle} data-icon-well="true">
+        <Icon size={16} />
+      </Box>
+      <Box {...classes.serviceCardBodyStyle}>
+        <span {...classes.serviceNameStyle}>{service.name}</span>
         <p {...classes.serviceDescStyle}>{service.description}</p>
       </Box>
     </Link>

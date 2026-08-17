@@ -32,6 +32,7 @@ interface Service {
   description: string;
   href: string;
   icon: React.ComponentType<IconProps>;
+  badge?: string;
 }
 
 interface ServiceCategory {
@@ -48,6 +49,7 @@ const SERVICE_CATEGORIES: ServiceCategory[] = [
         description: "Manage structured data collections and content",
         href: `${COMPOSE_URL}/projects`,
         icon: Database,
+        badge: "Core",
       },
       {
         name: "Rules Engine",
@@ -77,6 +79,7 @@ const SERVICE_CATEGORIES: ServiceCategory[] = [
         description: "Visually wire and orchestrate API flows",
         href: `${CODEBLOCKS_URL}/codeblocks`,
         icon: Workflow,
+        badge: "Popular",
       },
       {
         name: "API Explorer",
@@ -94,6 +97,7 @@ const SERVICE_CATEGORIES: ServiceCategory[] = [
         description: "Bind analytics events to UI elements visually",
         href: `${ANALYTICS_URL}/visual-editor`,
         icon: Eye,
+        badge: "New",
       },
       {
         name: "Event Tracking",
@@ -117,6 +121,7 @@ const SERVICE_CATEGORIES: ServiceCategory[] = [
         description: "Organize projects and team collaboration",
         href: `${COMPOSE_URL}/projects`,
         icon: Boxes,
+        badge: "Core",
       },
       {
         name: "SDK Manager",
@@ -179,9 +184,10 @@ export const StudioPage = () => {
     <Box {...classes.studioContainerStyle}>
       <Box {...classes.studioInnerStyle}>
         <Box {...classes.studioHeaderStyle}>
+          <span {...classes.studioEyebrowStyle}>Console Directory</span>
           <Box {...classes.studioTitleStyle}>Operon Studio</Box>
           <Box {...classes.studioSubtitleStyle}>
-            Choose a service to jump into
+            Select a service to manage your application infrastructure and workflows
           </Box>
           <Box {...classes.searchContainerStyle}>
             <Box {...classes.searchIconStyle}>
@@ -205,13 +211,15 @@ export const StudioPage = () => {
         )}
 
         {filteredCategories.map((category) => (
-          <Box key={category.title} {...classes.categorySectionStyle}>
-            <Box {...classes.categoryHeaderStyle}>
-              <Box {...classes.categoryTitleStyle}>{category.title}</Box>
+          <Box key={category.title} {...classes.studioCategoryBlockStyle}>
+            <Box {...classes.studioCategoryRailStyle}>
+              <span {...classes.studioCategoryLabelStyle}>{category.title}</span>
+              <span {...classes.studioCategoryLineStyle} aria-hidden="true" />
             </Box>
-            <Box {...classes.servicesGridStyle}>
+            <Box {...classes.studioGridStyle}>
               {category.services.map((service) => {
                 const Icon = service.icon;
+                const tagType = service.badge?.toLowerCase();
                 return (
                   <a
                     key={service.name}
@@ -220,14 +228,19 @@ export const StudioPage = () => {
                     {...classes.serviceLinkStyle}
                   >
                     <Box {...classes.serviceCardStyle}>
-                      <Box {...classes.serviceIconStyle}>
+                      {service.badge && (
+                        <span {...classes.serviceTagStyle} data-tag={tagType}>
+                          {service.badge}
+                        </span>
+                      )}
+                      <Box {...classes.serviceIconWrapperStyle} data-icon-well="true">
                         <Icon size={16} />
                       </Box>
-                      <Box {...classes.serviceInfoStyle}>
-                        <Box {...classes.serviceTitleStyle}>{service.name}</Box>
-                        <Box {...classes.serviceDescStyle}>
+                      <Box {...classes.serviceCardBodyStyle}>
+                        <span {...classes.serviceNameStyle}>{service.name}</span>
+                        <p {...classes.serviceDescStyle}>
                           {service.description}
-                        </Box>
+                        </p>
                       </Box>
                     </Box>
                   </a>

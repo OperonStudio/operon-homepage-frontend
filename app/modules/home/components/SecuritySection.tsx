@@ -29,23 +29,14 @@ export const SecuritySection = () => {
                   }}
                 >
                   <Box {...classes.securityStatStyle}>{item.stat}</Box>
-                  <Box
-                    style={{
-                      width: "36px",
-                      height: "36px",
-                      borderRadius: "var(--operon-radius-md)",
-                      backgroundColor: "var(--operon-color-primary-ghost)",
-                      color: "var(--operon-color-primary)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Icon size={18} />
+                  <Box {...classes.securityIconWrapperStyle} data-icon-well="true">
+                    <Icon size={16} />
                   </Box>
                 </Box>
-                <h3 {...classes.securityCardTitleStyle}>{item.title}</h3>
-                <p {...classes.securityCardDescStyle}>{item.description}</p>
+                <Box {...classes.securityCardBodyStyle}>
+                  <h3 {...classes.securityCardTitleStyle}>{item.title}</h3>
+                  <p {...classes.securityCardDescStyle}>{item.description}</p>
+                </Box>
               </Box>
             );
           })}
