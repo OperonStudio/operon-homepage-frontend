@@ -9,10 +9,7 @@ export const SiteFooter = () => {
         {/* Brand & System Status */}
         <Box {...classes.footerBrandColStyle}>
           <Box {...classes.logoStyle}>
-            <span {...classes.logoMarkStyle} aria-hidden>
-              O
-            </span>
-            Operon Cloud Platform
+            <img src="/operon-lockup.svg" alt="Operon" height="24" style={{ display: "block" }} />
           </Box>
           <Box style={{ fontSize: "13px", lineHeight: "1.6", maxWidth: "320px" }}>
             The API-first headless orchestrator for high-velocity engineering teams.

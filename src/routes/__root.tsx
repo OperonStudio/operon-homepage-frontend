@@ -17,6 +17,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
 			{ title: "Operon - The Unified Cloud Platform" },
 		],
 		links: [
+			{ rel: "icon", type: "image/svg+xml", href: "/operon-mark.svg" },
 			{ rel: "preconnect", href: "https://fonts.googleapis.com" },
 			{
 				rel: "preconnect",

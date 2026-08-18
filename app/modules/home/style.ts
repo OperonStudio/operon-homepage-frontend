@@ -531,8 +531,8 @@ const suitePalette = {
   lineFaint: "#EEF1F6",
   textPrimary: "#151924",
   textMuted: "#5E6577",
-  signal: "#C97B12", // muted daylight amber — same hue family as hero, dialed down for light bg
-  signalGhost: "#FDF3E4",
+  signal: "#0972D3", // Operon signature blue — matching all micro-frontends
+  signalGhost: "#F2F8FD",
   live: "#0D9A73",
   liveGhost: "#E6F7F1",
   new: "#3D5AFE",

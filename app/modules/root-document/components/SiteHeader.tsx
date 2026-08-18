@@ -30,11 +30,8 @@ export const SiteHeader = () => {
     <>
       <Box {...classes.headerStyle}>
         <Box {...classes.headerLeftStyle}>
-          <Link to="/" {...classes.logoStyle}>
-            <span {...classes.logoMarkStyle} aria-hidden>
-              O
-            </span>
-            Operon
+          <Link to="/" {...classes.logoStyle} aria-label="Operon Homepage">
+            <img src="/operon-lockup.svg" alt="Operon" height="26" style={{ display: "block" }} />
           </Link>
 
           <nav aria-label="Main Navigation">
