@@ -1,5 +1,5 @@
-import path from "node:path";
 import { devtools } from "@tanstack/devtools-vite";
+import path from "node:path";
 import { defineConfig } from "vite";
 import viteCompression from "vite-plugin-compression";
 
@@ -13,7 +13,19 @@ import viteReact, { reactCompilerPreset } from "@vitejs/plugin-react";
 const repoRoot = path.resolve("..");
 
 const config = defineConfig({
-  resolve: { tsconfigPaths: true },
+  resolve: {
+    tsconfigPaths: true,
+    dedupe: [
+      "solid-js",
+      "solid-js/web",
+      "solid-js/store",
+      "react",
+      "react-dom",
+    ],
+  },
+  optimizeDeps: {
+    include: ["solid-js", "solid-js/web"],
+  },
   server: {
     fs: {
       allow: [repoRoot],
