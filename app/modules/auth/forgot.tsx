@@ -1,4 +1,4 @@
-import { Box, Button, Input } from "@operon/ui";
+import { Box, Button, Input } from "@operonstudio/ui";
 import { Link, useNavigate } from "@tanstack/react-router";
 import * as classes from "./style";
 

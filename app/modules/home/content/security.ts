@@ -1,5 +1,5 @@
-import type { IconProps } from "@operon/icons";
-import { Globe, KeyRound, Network, ShieldCheck } from "@operon/icons";
+import type { IconProps } from "@operonstudio/icons";
+import { Globe, KeyRound, Network, ShieldCheck } from "@operonstudio/icons";
 
 export interface SecurityFeature {
   id: string;

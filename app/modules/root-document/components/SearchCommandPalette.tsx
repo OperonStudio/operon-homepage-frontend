@@ -1,5 +1,5 @@
-import { Command, Search, X } from "@operon/icons";
-import { Box } from "@operon/ui";
+import { Command, Search, X } from "@operonstudio/icons";
+import { Box } from "@operonstudio/ui";
 import { useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import * as classes from "../style";

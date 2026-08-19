@@ -1,4 +1,4 @@
-import { useAuth } from "@operon/auth";
+import { useAuth } from "@operonstudio/auth";
 import {
   BarChart3,
   Boxes,
@@ -13,13 +13,13 @@ import {
   Terminal,
   Workflow,
   Zap,
-} from "@operon/icons";
-import { Box } from "@operon/ui";
+} from "@operonstudio/icons";
+import { Box } from "@operonstudio/ui";
 import { useNavigate } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import * as classes from "./style";
 
-import type { IconProps } from "@operon/icons";
+import type { IconProps } from "@operonstudio/icons";
 
 const COMPOSE_URL = import.meta.env.VITE_COMPOSE_URL ?? "http://localhost:4000";
 const CODEBLOCKS_URL =

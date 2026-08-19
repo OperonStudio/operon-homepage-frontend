@@ -1,8 +1,8 @@
 import { TopProgressBar } from "#/components/top-progress-bar";
 import { AppThemeProvider } from "#/contexts/theme";
 import TanStackQueryDevtools from "@/integrations/tanstack-query/devtools";
-import { AuthProvider, extractTokenFromURL } from "@operon/auth";
-import { Box, Toaster } from "@operon/ui";
+import { AuthProvider, extractTokenFromURL } from "@operonstudio/auth";
+import { Box, Toaster } from "@operonstudio/ui";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { HeadContent, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";

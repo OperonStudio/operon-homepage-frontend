@@ -1,6 +1,6 @@
-import { ChevronDown, Command, Database, Eye, Search, Workflow } from "@operon/icons";
-import { useAuth } from "@operon/auth";
-import { Box, Button } from "@operon/ui";
+import { ChevronDown, Command, Database, Eye, Search, Workflow } from "@operonstudio/icons";
+import { useAuth } from "@operonstudio/auth";
+import { Box, Button } from "@operonstudio/ui";
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import * as classes from "../style";

@@ -1,5 +1,5 @@
-import { useAuth } from "@operon/auth";
-import { Box, Button, Input } from "@operon/ui";
+import { useAuth } from "@operonstudio/auth";
+import { Box, Button, Input } from "@operonstudio/ui";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import * as classes from "./style";

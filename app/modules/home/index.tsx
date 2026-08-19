@@ -1,4 +1,4 @@
-import { Box } from "@operon/ui";
+import { Box } from "@operonstudio/ui";
 import { CloudSuiteGrid } from "./components/CloudSuiteGrid";
 import { Hero } from "./components/Hero";
 import { SecuritySection } from "./components/SecuritySection";

@@ -1,4 +1,4 @@
-import { Box } from "@operon/ui";
+import { Box } from "@operonstudio/ui";
 import { CLOUD_SERVICES } from "../content/services";
 import * as classes from "../style";
 import { ServiceCard } from "./ServiceCard";

@@ -1,5 +1,5 @@
-import { X } from "@operon/icons";
-import { Box } from "@operon/ui";
+import { X } from "@operonstudio/icons";
+import { Box } from "@operonstudio/ui";
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import * as classes from "../style";

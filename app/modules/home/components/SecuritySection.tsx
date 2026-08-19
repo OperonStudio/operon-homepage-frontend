@@ -1,4 +1,4 @@
-import { Box } from "@operon/ui";
+import { Box } from "@operonstudio/ui";
 import { SECURITY_FEATURES } from "../content/security";
 import * as classes from "../style";
 

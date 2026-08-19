@@ -1,4 +1,4 @@
-import type { IconProps } from "@operon/icons";
+import type { IconProps } from "@operonstudio/icons";
 import {
   BarChart3,
   Boxes,
@@ -12,7 +12,7 @@ import {
   Terminal,
   Workflow,
   Zap,
-} from "@operon/icons";
+} from "@operonstudio/icons";
 
 export interface CloudService {
   id: string;

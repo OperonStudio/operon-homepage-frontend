@@ -1,4 +1,4 @@
-import { Box } from "@operon/ui";
+import { Box } from "@operonstudio/ui";
 import { NEWS_ITEMS } from "../content/news";
 import * as classes from "../style";
 import { NewsCard } from "./NewsCard";

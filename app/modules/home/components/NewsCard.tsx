@@ -1,5 +1,5 @@
-import { ChevronRight } from "@operon/icons";
-import { Box } from "@operon/ui";
+import { ChevronRight } from "@operonstudio/icons";
+import { Box } from "@operonstudio/ui";
 import { Link } from "@tanstack/react-router";
 import type { NewsItem } from "../content/news";
 import * as classes from "../style";

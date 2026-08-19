@@ -1,4 +1,4 @@
-import { ThemeProvider as OperonThemeProvider, darkTheme, lightTheme } from "@operon/ui";
+import { ThemeProvider as OperonThemeProvider, darkTheme, lightTheme } from "@operonstudio/ui";
 import { type ReactNode, createContext, useContext, useState } from "react";
 
 interface ThemeContextType {

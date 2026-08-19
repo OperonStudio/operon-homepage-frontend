@@ -1,5 +1,5 @@
-import { resolveNextRedirect, useAuth } from "@operon/auth";
-import { Box, Button, Input } from "@operon/ui";
+import { resolveNextRedirect, useAuth } from "@operonstudio/auth";
+import { Box, Button, Input } from "@operonstudio/ui";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import * as classes from "./style";
