@@ -9,9 +9,6 @@ import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
 import * as classes from "./style";
 
-const AUTH_API_URL =
-  import.meta.env.VITE_OPERON_AUTH_API_URL ?? "http://localhost:8081";
-
 const ENABLE_URL_TOKEN_BRIDGE =
   import.meta.env.VITE_ENABLE_URL_TOKEN_BRIDGE === "true" ||
   import.meta.env.DEV;
@@ -38,7 +35,7 @@ export const RootDocument = ({ children }: { children: React.ReactNode }) => {
       <body>
         <ThemeProvider defaultDark={false}>
           <AuthProvider
-            refreshUrl={`${AUTH_API_URL}/api/auth/refresh`}
+            refreshUrl="/api/auth/refresh"
             enableUrlTokenBridge={ENABLE_URL_TOKEN_BRIDGE}
           >
             <TopProgressBar />
