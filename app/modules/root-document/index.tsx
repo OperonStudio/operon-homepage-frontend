@@ -9,10 +9,6 @@ import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
 import * as classes from "./style";
 
-const ENABLE_URL_TOKEN_BRIDGE =
-  import.meta.env.VITE_ENABLE_URL_TOKEN_BRIDGE === "true" ||
-  import.meta.env.DEV;
-
 function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
@@ -36,7 +32,7 @@ export const RootDocument = ({ children }: { children: React.ReactNode }) => {
         <ThemeProvider defaultDark={false}>
           <AuthProvider
             refreshUrl="/api/auth/refresh"
-            enableUrlTokenBridge={ENABLE_URL_TOKEN_BRIDGE}
+            enableUrlTokenBridge={true}
           >
             <TopProgressBar />
             <Toaster />
