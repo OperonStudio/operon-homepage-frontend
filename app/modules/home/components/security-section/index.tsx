@@ -1,0 +1,49 @@
+import { Box } from "@operonstudio/ui";
+import { useSecuritySection } from "./hook";
+import * as classes from "./style";
+
+export const SecuritySection = () => {
+  const { securityFeatures } = useSecuritySection();
+
+  return (
+    <section id="security" {...classes.securitySectionStyle}>
+      <Box {...classes.securityInnerStyle}>
+        <Box {...classes.sectionEyebrowStyle}>Enterprise Security & Trust</Box>
+        <h2 {...classes.sectionTitleStyle}>
+          Meet your unique security and compliance requirements
+        </h2>
+        <Box {...classes.sectionDescStyle}>
+          Operon is engineered from the ground up for high-compliance workloads,
+          protecting sensitive enterprise operations with zero-trust key management
+          and sub-10ms global edge delivery.
+        </Box>
+
+        <Box {...classes.securityGridStyle}>
+          {securityFeatures.map((item) => {
+            const Icon = item.icon;
+            return (
+              <Box key={item.id} {...classes.securityCardStyle}>
+                <Box
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <Box {...classes.securityStatStyle}>{item.stat}</Box>
+                  <Box {...classes.securityIconWrapperStyle} data-icon-well="true">
+                    <Icon size={16} />
+                  </Box>
+                </Box>
+                <Box {...classes.securityCardBodyStyle}>
+                  <h3 {...classes.securityCardTitleStyle}>{item.title}</h3>
+                  <p {...classes.securityCardDescStyle}>{item.description}</p>
+                </Box>
+              </Box>
+            );
+          })}
+        </Box>
+      </Box>
+    </section>
+  );
+};

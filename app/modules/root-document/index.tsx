@@ -1,31 +1,29 @@
-import { TopProgressBar } from "#/components/top-progress-bar";
-import { AppThemeProvider } from "#/contexts/theme";
 import TanStackQueryDevtools from "@/integrations/tanstack-query/devtools";
-import { AuthProvider, extractTokenFromURL } from "@operonstudio/auth";
-import { Box, Toaster } from "@operonstudio/ui";
+import { AuthProvider } from "@operonstudio/auth";
+import { Box, ThemeProvider, Toaster, TopProgressBar } from "@operonstudio/ui";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { HeadContent, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { AnnouncementBanner } from "./components/AnnouncementBanner";
-import { SiteFooter } from "./components/SiteFooter";
-import { SiteHeader } from "./components/SiteHeader";
+import { AnnouncementBanner } from "./components/announcement-banner";
+import { SiteFooter } from "./components/site-footer";
+import { SiteHeader } from "./components/site-header";
+import * as classes from "./style";
 
 const AUTH_API_URL =
   import.meta.env.VITE_OPERON_AUTH_API_URL ?? "http://localhost:8081";
 
-// Extract token synchronously before TanStack Router mounts and strips it
-if (typeof window !== "undefined") {
-  extractTokenFromURL();
-}
+const ENABLE_URL_TOKEN_BRIDGE =
+  import.meta.env.VITE_ENABLE_URL_TOKEN_BRIDGE === "true" ||
+  import.meta.env.DEV;
 
 function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <AnnouncementBanner />
-      <SiteHeader />
-      <Box style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-        {children}
+      <Box {...classes.stickyTopContainerStyle}>
+        <AnnouncementBanner />
+        <SiteHeader />
       </Box>
+      <Box {...classes.mainBodyWrapperStyle}>{children}</Box>
       <SiteFooter />
     </>
   );
@@ -37,34 +35,32 @@ export const RootDocument = ({ children }: { children: React.ReactNode }) => {
       <head>
         <HeadContent />
       </head>
-      <body
-        style={{
-          margin: 0,
-          minHeight: "100vh",
-          display: "flex",
-          flexDirection: "column",
-          backgroundColor: "var(--operon-color-background)",
-        }}
-      >
-        <AuthProvider refreshUrl={`${AUTH_API_URL}/api/auth/refresh`}>
-          <AppThemeProvider>
+      <body>
+        <ThemeProvider defaultDark={false}>
+          <AuthProvider
+            refreshUrl={`${AUTH_API_URL}/api/auth/refresh`}
+            enableUrlTokenBridge={ENABLE_URL_TOKEN_BRIDGE}
+          >
             <TopProgressBar />
             <Toaster />
             <RootLayout>{children}</RootLayout>
-          </AppThemeProvider>
-        </AuthProvider>
-        <TanStackDevtools
-          config={{
-            position: "bottom-right",
-          }}
-          plugins={[
-            {
-              name: "Tanstack Router",
-              render: <TanStackRouterDevtoolsPanel />,
-            },
-            TanStackQueryDevtools,
-          ]}
-        />
+
+            {import.meta.env.DEV && (
+              <TanStackDevtools
+                config={{
+                  position: "bottom-left",
+                }}
+                plugins={[
+                  {
+                    name: "TanStack Router",
+                    render: <TanStackRouterDevtoolsPanel />,
+                  },
+                  TanStackQueryDevtools as any,
+                ]}
+              />
+            )}
+          </AuthProvider>
+        </ThemeProvider>
         <Scripts />
       </body>
     </html>
