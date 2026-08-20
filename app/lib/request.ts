@@ -8,10 +8,11 @@ const AUTH_API_URL =
 export const apiClient = createClient({
   baseURL: AUTH_API_URL,
 }).use(
-  withAuth(
-    getAuthMiddlewareOptions({
+  withAuth({
+    ...getAuthMiddlewareOptions({
       refreshUrl: `${AUTH_API_URL}/api/auth/refresh`,
       loginUrl: "/login",
-    })
-  )
+    }),
+    strict: false, // Don't block unauthenticated requests (e.g. login/register)
+  })
 );
