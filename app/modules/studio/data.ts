@@ -15,7 +15,7 @@ import {
 import type { IconProps } from "@operonstudio/icons";
 
 export const COMPOSE_URL =
-  import.meta.env.VITE_COMPOSE_URL ?? "http://localhost:4000";
+  import.meta.env.VITE_COMPOSE_URL ?? "https://compose.operonstudio.tech";
 export const CODEBLOCKS_URL =
   import.meta.env.VITE_CODEBLOCKS_URL ?? "http://localhost:4002";
 export const ANALYTICS_URL =
