@@ -1,9 +1,6 @@
 import { useAuth } from "@operonstudio/auth";
 import { useEffect, useState } from "react";
 
-const AUTH_API_URL =
-  import.meta.env.VITE_OPERON_AUTH_API_URL ?? "http://localhost:8081";
-
 export const useSiteHeader = () => {
   const { isLoggedIn, logout } = useAuth();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -27,7 +24,7 @@ export const useSiteHeader = () => {
 
   const handleLogout = () => {
     closeMobileMenu();
-    logout(`${AUTH_API_URL}/api/auth/logout`);
+    logout("/api/auth/logout");
   };
 
   return {
