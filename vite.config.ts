@@ -29,12 +29,24 @@ const config = defineConfig({
 		fs: {
 			allow: [repoRoot],
 		},
+		proxy: {
+			"/api": {
+				target: process.env.VITE_OPERON_AUTH_API_URL || "http://localhost:8081",
+				changeOrigin: true,
+			},
+		},
 	},
 	plugins: [
 		devtools() as any,
 		morphcss() as any,
 		tanstackStart() as any,
-		nitro() as any,
+		nitro({
+			routeRules: {
+				"/api/**": {
+					proxy: (process.env.VITE_OPERON_AUTH_API_URL || "http://localhost:8081") + "/api/**",
+				},
+			},
+		}) as any,
 		viteReact() as any,
 		babel({ presets: [reactCompilerPreset()] }) as any,
 		viteCompression({ algorithm: "brotliCompress" }) as any,
