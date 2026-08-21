@@ -14,12 +14,24 @@ import {
 } from "@operonstudio/icons";
 import type { IconProps } from "@operonstudio/icons";
 
+const isProdDomain =
+  typeof window !== "undefined" &&
+  window.location.hostname.endsWith("operonstudio.tech");
+
 export const COMPOSE_URL =
-  import.meta.env.VITE_COMPOSE_URL ?? "https://compose.operonstudio.tech";
+  isProdDomain || import.meta.env.PROD
+    ? "https://compose.operonstudio.tech"
+    : (import.meta.env.VITE_COMPOSE_URL ?? "http://localhost:4000");
+
 export const CODEBLOCKS_URL =
-  import.meta.env.VITE_CODEBLOCKS_URL ?? "https://codeblocks.operonstudio.tech";
+  isProdDomain || import.meta.env.PROD
+    ? "https://codeblocks.operonstudio.tech"
+    : (import.meta.env.VITE_CODEBLOCKS_URL ?? "http://localhost:4002");
+
 export const ANALYTICS_URL =
-  import.meta.env.VITE_ANALYTICS_URL ?? "https://analytics.operonstudio.tech";
+  isProdDomain || import.meta.env.PROD
+    ? "https://analytics.operonstudio.tech"
+    : (import.meta.env.VITE_ANALYTICS_URL ?? "http://localhost:4003");
 
 export interface Service {
   name: string;
