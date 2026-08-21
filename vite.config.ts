@@ -29,12 +29,6 @@ const config = defineConfig({
 		fs: {
 			allow: [repoRoot],
 		},
-		proxy: {
-			"/api": {
-				target: process.env.VITE_OPERON_AUTH_API_URL || "http://localhost:8081",
-				changeOrigin: true,
-			},
-		},
 	},
 	plugins: [
 		devtools() as any,
