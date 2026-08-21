@@ -17,9 +17,9 @@ import type { IconProps } from "@operonstudio/icons";
 export const COMPOSE_URL =
   import.meta.env.VITE_COMPOSE_URL ?? "https://compose.operonstudio.tech";
 export const CODEBLOCKS_URL =
-  import.meta.env.VITE_CODEBLOCKS_URL ?? "http://localhost:4002";
+  import.meta.env.VITE_CODEBLOCKS_URL ?? "https://codeblocks.operonstudio.tech";
 export const ANALYTICS_URL =
-  import.meta.env.VITE_ANALYTICS_URL ?? "http://localhost:4003";
+  import.meta.env.VITE_ANALYTICS_URL ?? "https://analytics.operonstudio.tech";
 
 export interface Service {
   name: string;
