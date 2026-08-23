@@ -9,7 +9,7 @@ export const LoginPage = () => {
     setEmail,
     password,
     setPassword,
-    error,
+    // error,
     loading,
     handleLogin,
   } = useLoginPage();
@@ -20,7 +20,7 @@ export const LoginPage = () => {
         <Box {...classes.authTitleStyle}>Sign in</Box>
         <Box {...classes.authSubtitleStyle}>Sign in to your Operon account</Box>
 
-        {error && <Box {...classes.authErrorStyle}>{error}</Box>}
+        {/* {error && <Box {...classes.authErrorStyle}>{error}</Box>} */}
 
         <form onSubmit={handleLogin} {...classes.authFormStyle}>
           <Box {...classes.authFieldStyle}>

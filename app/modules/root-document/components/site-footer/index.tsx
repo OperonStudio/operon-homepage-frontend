@@ -1,13 +1,22 @@
 import { Box } from "@operonstudio/ui";
 import { Link } from "@tanstack/react-router";
-import { footerColumns, footerLegalLinks } from "./data";
+import { useHomePage } from "../../hook";
 import * as classes from "./style";
 
 export const SiteFooter = () => {
+  const { footerData, error } = useHomePage();
+  const {
+    columns: footerColumns,
+    legalLinks: footerLegalLinks,
+    show: showFooter,
+    title: footerTitle,
+  } = footerData || {};
+
+  if (!showFooter || error) return null;
+
   return (
     <footer {...classes.footerContainerStyle}>
       <Box {...classes.footerInnerStyle}>
-        {/* Brand & System Status */}
         <Box {...classes.footerBrandColStyle}>
           <Box {...classes.logoStyle}>
             <img
@@ -25,13 +34,11 @@ export const SiteFooter = () => {
               maxWidth: "320px",
             }}
           >
-            The API-first headless orchestrator for high-velocity engineering
-            teams.
+            {footerTitle}
           </Box>
         </Box>
 
-        {/* Footer Columns */}
-        {footerColumns.map((column) => (
+        {footerColumns?.map((column) => (
           <Box key={column.title}>
             <Box {...classes.footerColTitleStyle}>{column.title}</Box>
 
@@ -48,7 +55,6 @@ export const SiteFooter = () => {
         ))}
       </Box>
 
-      {/* Footer Bottom Bar */}
       <Box {...classes.footerBottomStyle}>
         <div>
           &copy; {new Date().getFullYear()} Operon Studio Inc. All rights
@@ -56,7 +62,7 @@ export const SiteFooter = () => {
         </div>
 
         <div style={{ display: "flex", gap: "16px" }}>
-          {footerLegalLinks.map((link) => (
+          {footerLegalLinks?.map((link) => (
             <Link key={link.label} to={link.to} {...classes.footerLinkStyle}>
               {link.label}
             </Link>

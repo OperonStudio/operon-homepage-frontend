@@ -1,8 +1,9 @@
-import { resolveNextRedirect, useAuth } from "@operonstudio/auth";
+import { useAuth } from "@operonstudio/auth";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { loginMutationOptions } from "../api";
+import { toast } from "@operonstudio/ui";
 
 function useAllowedRedirectOrigins(): string[] {
   return useMemo(() => {
@@ -29,43 +30,52 @@ export const useLoginPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+
   const allowedOrigins = useAllowedRedirectOrigins();
 
-  const { isLoggedIn, token, login } = useAuth();
+  const { isLoggedIn, refresh } = useAuth();
 
   const loginMutation = useMutation(loginMutationOptions);
 
-  const handleAuthenticated = useCallback(
-    (jwt: string) => {
-      const redirect = resolveNextRedirect(jwt, allowedOrigins);
-      if (redirect) {
-        window.location.replace(redirect);
-        return;
+  const handleAuthenticated = useCallback(() => {
+    if (typeof window !== "undefined") {
+      const next = new URLSearchParams(window.location.search).get("next");
+      if (next) {
+        try {
+          const url = new URL(next, window.location.origin);
+          if (
+            url.origin === window.location.origin ||
+            allowedOrigins.includes(url.origin)
+          ) {
+            window.location.replace(url.toString());
+            return;
+          }
+        } catch {
+          // ignore invalid URLs
+        }
       }
-      navigate({ to: "/studio", replace: true });
-    },
-    [allowedOrigins, navigate],
-  );
+    }
+    navigate({ to: "/studio", replace: true });
+  }, [allowedOrigins, navigate]);
 
   useEffect(() => {
-    if (isLoggedIn && token) {
-      handleAuthenticated(token);
+    if (isLoggedIn) {
+      handleAuthenticated();
     }
-  }, [isLoggedIn, token, handleAuthenticated]);
+  }, [isLoggedIn, handleAuthenticated]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    // setError("");
 
     try {
       const data = await loginMutation.mutateAsync({ email, password });
-      if (data?.token) {
-        login(data.token);
-        handleAuthenticated(data.token);
+      if (data) {
+        await refresh();
+        handleAuthenticated();
       }
     } catch (err: any) {
-      setError(err?.message || err?.body?.error || "Failed to sign in");
+      toast.error(err?.message || err?.body?.error || "Failed to sign in");
     }
   };
 
@@ -74,7 +84,7 @@ export const useLoginPage = () => {
     setEmail,
     password,
     setPassword,
-    error,
+    // error,
     loading: loginMutation.isPending,
     handleLogin,
   };

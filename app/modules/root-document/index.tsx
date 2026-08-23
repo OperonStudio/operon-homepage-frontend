@@ -1,3 +1,4 @@
+import { isDev } from "#/lib";
 import TanStackQueryDevtools from "@/integrations/tanstack-query/devtools";
 import { AuthProvider } from "@operonstudio/auth";
 import { Box, ThemeProvider, Toaster, TopProgressBar } from "@operonstudio/ui";
@@ -32,15 +33,11 @@ export const RootDocument = ({ children }: { children: React.ReactNode }) => {
       </head>
       <body>
         <ThemeProvider defaultDark={false}>
-          <AuthProvider
-            refreshUrl="/api/auth/refresh"
-            enableUrlTokenBridge={true}
-          >
+          <AuthProvider>
             <TopProgressBar />
             <Toaster />
             <RootLayout>{children}</RootLayout>
-
-            {import.meta.env.DEV && (
+            {isDev && (
               <TanStackDevtools
                 config={{
                   position: "bottom-left",

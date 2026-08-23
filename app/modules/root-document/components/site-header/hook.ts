@@ -24,7 +24,7 @@ export const useSiteHeader = () => {
 
   const handleLogout = () => {
     closeMobileMenu();
-    logout("/api/auth/logout");
+    logout();
   };
 
   return {
