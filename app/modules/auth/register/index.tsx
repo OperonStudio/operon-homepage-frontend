@@ -63,7 +63,7 @@ export const RegisterPage = () => {
 
         <Box {...classes.authFooterStyle}>
           Already have an account?{" "}
-          <Link to="/login" {...classes.authLinkStyle}>
+          <Link to="/login" search={(prev) => prev} {...classes.authLinkStyle}>
             Sign in
           </Link>
         </Box>

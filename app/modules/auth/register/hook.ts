@@ -2,7 +2,7 @@ import { useAuth } from "@operonstudio/auth";
 import { toast } from "@operonstudio/ui";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { registerApi, type RegisterPayload } from "../api";
 
 export const useRegisterPage = () => {
@@ -14,10 +14,24 @@ export const useRegisterPage = () => {
   });
   const { isLoggedIn } = useAuth();
 
+  const handleAuthenticated = useCallback(() => {
+    const nextParam = new URLSearchParams(window.location.search).get("next");
+    if (nextParam) {
+      try {
+        const url = new URL(nextParam, window.location.origin);
+        window.location.replace(url.toString());
+        return;
+      } catch {
+        // Fall through to default navigation on malformed next param.
+      }
+    }
+    navigate({ to: "/studio", replace: true });
+  }, [navigate]);
+
   const registerMutation = useMutation({
     mutationFn: (data: RegisterPayload) => registerApi(data),
     onSuccess: () => {
-      navigate({ to: "/studio", replace: true });
+      handleAuthenticated();
       toast.success("Register Successful");
     },
     onError: (err: any) => {
@@ -28,9 +42,9 @@ export const useRegisterPage = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate({ to: "/studio", replace: true });
+      handleAuthenticated();
     }
-  }, [isLoggedIn, navigate]);
+  }, [isLoggedIn, handleAuthenticated]);
 
   const handleRegister = (e: React.SubmitEvent) => {
     e.preventDefault();

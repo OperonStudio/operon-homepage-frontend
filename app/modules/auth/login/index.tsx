@@ -28,7 +28,11 @@ export const LoginPage = () => {
           <Box {...classes.authFieldStyle}>
             <Box {...classes.authLabelRowStyle}>
               <Box {...classes.authLabelStyle}>Password</Box>
-              <Link to="/forgot" {...classes.authLinkStyle}>
+              <Link
+                to="/forgot"
+                search={(prev) => prev}
+                {...classes.authLinkStyle}
+              >
                 Forgot password?
               </Link>
             </Box>
@@ -56,7 +60,11 @@ export const LoginPage = () => {
 
         <Box {...classes.authFooterStyle}>
           Don&apos;t have an account?{" "}
-          <Link to="/register" {...classes.authLinkStyle}>
+          <Link
+            to="/register"
+            search={(prev: any) => prev}
+            {...classes.authLinkStyle}
+          >
             Create one
           </Link>
         </Box>
