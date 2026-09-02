@@ -4,8 +4,8 @@ import { useForgotPasswordPage } from "./hook";
 import * as classes from "./style";
 
 export const ForgotPasswordPage = () => {
-  const { email, setEmail, handleReset } = useForgotPasswordPage();
-
+  const { form, handleFormChange, handleReset } = useForgotPasswordPage();
+  const { email } = form;
   return (
     <Box {...classes.authContainerStyle}>
       <Box {...classes.authCardStyle}>
@@ -19,10 +19,11 @@ export const ForgotPasswordPage = () => {
             <Box {...classes.authLabelStyle}>Email</Box>
             <Input
               type="email"
+              name="email"
               placeholder="name@company.com"
               required
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleFormChange}
             />
           </Box>
           <Button

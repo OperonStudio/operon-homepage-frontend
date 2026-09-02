@@ -4,59 +4,49 @@ import { useRegisterPage } from "./hook";
 import * as classes from "./style";
 
 export const RegisterPage = () => {
-  const {
-    name,
-    setName,
-    email,
-    setEmail,
-    password,
-    setPassword,
-    error,
-    loading,
-    nextParam,
-    handleRegister,
-  } = useRegisterPage();
-
+  const { form, loading, handleRegister, handleFormChange } = useRegisterPage();
+  const { email, name, password } = form;
   return (
     <Box {...classes.authContainerStyle}>
       <Box {...classes.authCardStyle}>
         <Box {...classes.authTitleStyle}>Create your account</Box>
         <Box {...classes.authSubtitleStyle}>Start building with Operon</Box>
 
-        {error && <Box {...classes.authErrorStyle}>{error}</Box>}
-
         <form onSubmit={handleRegister} {...classes.authFormStyle}>
           <Box {...classes.authFieldStyle}>
             <Box {...classes.authLabelStyle}>Full name</Box>
             <Input
               type="text"
+              name="name"
               placeholder="Jane Doe"
               required
               autoComplete="name"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={handleFormChange}
             />
           </Box>
           <Box {...classes.authFieldStyle}>
             <Box {...classes.authLabelStyle}>Email</Box>
             <Input
               type="email"
+              name="email"
               placeholder="name@company.com"
               required
               autoComplete="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleFormChange}
             />
           </Box>
           <Box {...classes.authFieldStyle}>
             <Box {...classes.authLabelStyle}>Password</Box>
             <Input
               type="password"
-              placeholder="At least 8 characters"
+              name="password"
+              placeholder="Enter Password"
               required
               autoComplete="new-password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handleFormChange}
             />
           </Box>
           <Button
@@ -73,11 +63,7 @@ export const RegisterPage = () => {
 
         <Box {...classes.authFooterStyle}>
           Already have an account?{" "}
-          <Link
-            to="/login"
-            search={nextParam ? { next: nextParam } : undefined}
-            {...classes.authLinkStyle}
-          >
+          <Link to="/login" {...classes.authLinkStyle}>
             Sign in
           </Link>
         </Box>

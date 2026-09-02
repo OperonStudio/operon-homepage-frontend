@@ -4,34 +4,25 @@ import { useLoginPage } from "./hook";
 import * as classes from "./style";
 
 export const LoginPage = () => {
-  const {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    // error,
-    loading,
-    handleLogin,
-  } = useLoginPage();
-
+  const { form, handleFormChange, loading, handleLogin } = useLoginPage();
+  const { email, password } = form;
   return (
     <Box {...classes.authContainerStyle}>
       <Box {...classes.authCardStyle}>
         <Box {...classes.authTitleStyle}>Sign in</Box>
         <Box {...classes.authSubtitleStyle}>Sign in to your Operon account</Box>
 
-        {/* {error && <Box {...classes.authErrorStyle}>{error}</Box>} */}
-
         <form onSubmit={handleLogin} {...classes.authFormStyle}>
           <Box {...classes.authFieldStyle}>
             <Box {...classes.authLabelStyle}>Email</Box>
             <Input
               type="email"
+              name="email"
               placeholder="name@company.com"
               required
               autoComplete="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleFormChange}
             />
           </Box>
           <Box {...classes.authFieldStyle}>
@@ -43,11 +34,12 @@ export const LoginPage = () => {
             </Box>
             <Input
               type="password"
-              placeholder="••••••••"
+              name="password"
+              placeholder="Enter Password"
               required
               autoComplete="current-password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handleFormChange}
             />
           </Box>
           <Button

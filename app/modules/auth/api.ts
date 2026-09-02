@@ -1,7 +1,5 @@
 import { ENDPOINTS } from "#/common/endpoint";
 import { apiClient } from "#/lib/request";
-import { toast } from "@operonstudio/ui";
-import { mutationOptions } from "@tanstack/react-query";
 
 export interface LoginPayload {
   email: string;
@@ -9,7 +7,6 @@ export interface LoginPayload {
 }
 
 export interface LoginResponse {
-  token: string;
   user?: {
     id: string;
     email: string;
@@ -24,7 +21,6 @@ export interface RegisterPayload {
 }
 
 export interface RegisterResponse {
-  token?: string;
   message?: string;
   user?: {
     id: string;
@@ -42,15 +38,3 @@ export const registerApi = async (
 ): Promise<RegisterResponse> => {
   return await apiClient.post<RegisterResponse>(ENDPOINTS.AUTH.REGISTER, data);
 };
-
-export const loginMutationOptions = mutationOptions({
-  mutationFn: async (data: LoginPayload) => loginApi(data),
-  onSuccess: () => toast.success("Login Successful"),
-  onError: (err: any) => toast.error(err?.message || "Failed to Login"),
-});
-
-export const registerMutationOptions = mutationOptions({
-  mutationFn: async (data: RegisterPayload) => registerApi(data),
-  onSuccess: () => toast.success("Register Successful"),
-  onError: (err: any) => toast.error(err?.message || "Failed to Register"),
-});

@@ -1,27 +1,30 @@
 import { useAuth } from "@operonstudio/auth";
+import { toast } from "@operonstudio/ui";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { registerMutationOptions } from "../api";
+import { registerApi, type RegisterPayload } from "../api";
 
 export const useRegisterPage = () => {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const { isLoggedIn } = useAuth();
 
-  const registerMutation = useMutation(registerMutationOptions);
-
-  const nextParam =
-    typeof window !== "undefined"
-      ? new URLSearchParams(window.location.search).get("next")
-      : null;
-  const loginHref = nextParam
-    ? `/login?next=${encodeURIComponent(nextParam)}`
-    : "/login";
+  const registerMutation = useMutation({
+    mutationFn: (data: RegisterPayload) => registerApi(data),
+    onSuccess: () => {
+      navigate({ to: "/studio", replace: true });
+      toast.success("Register Successful");
+    },
+    onError: (err: any) => {
+      const msg = err?.body?.message || "Failed to Register";
+      toast.error(msg);
+    },
+  });
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -29,31 +32,22 @@ export const useRegisterPage = () => {
     }
   }, [isLoggedIn, navigate]);
 
-  const handleRegister = async (e: React.FormEvent) => {
+  const handleRegister = (e: React.SubmitEvent) => {
     e.preventDefault();
-    setError("");
-
-    try {
-      await registerMutation.mutateAsync({ name, email, password });
-
-      if (typeof window !== "undefined") {
-        window.location.assign(loginHref);
-      }
-    } catch (err: any) {
-      setError(err?.message || err?.body?.error || "Failed to register");
-    }
+    registerMutation.mutate(form);
   };
 
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
   return {
-    name,
-    setName,
-    email,
-    setEmail,
-    password,
-    setPassword,
-    error,
+    form,
+    handleFormChange,
     loading: registerMutation.isPending,
-    nextParam,
     handleRegister,
   };
 };

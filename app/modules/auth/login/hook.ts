@@ -1,62 +1,42 @@
 import { useAuth } from "@operonstudio/auth";
+import { toast } from "@operonstudio/ui";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { loginMutationOptions } from "../api";
-import { toast } from "@operonstudio/ui";
-
-function useAllowedRedirectOrigins(): string[] {
-  return useMemo(() => {
-    const origins = [
-      import.meta.env.VITE_HOMEPAGE_URL,
-      import.meta.env.VITE_COMPOSE_URL,
-      import.meta.env.VITE_CODEBLOCKS_URL,
-      import.meta.env.VITE_ANALYTICS_URL,
-    ]
-      .filter((v): v is string => typeof v === "string" && v.length > 0)
-      .map((v) => {
-        try {
-          return new URL(v).origin;
-        } catch {
-          return null;
-        }
-      })
-      .filter((v): v is string => v !== null);
-    return Array.from(new Set(origins));
-  }, []);
-}
+import { useCallback, useEffect, useState } from "react";
+import { loginApi, type LoginPayload } from "../api";
 
 export const useLoginPage = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const allowedOrigins = useAllowedRedirectOrigins();
-
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
   const { isLoggedIn, refresh } = useAuth();
 
-  const loginMutation = useMutation(loginMutationOptions);
+  const loginMutation = useMutation({
+    mutationFn: (data: LoginPayload) => loginApi(data),
+    onSuccess: async () => {
+      await refresh();
+      handleAuthenticated();
+      toast.success("Login Successful");
+    },
+    onError: (err: any) => {
+      const msg = err?.body?.message || "Failed to Login";
+      toast.error(msg);
+    },
+  });
 
   const handleAuthenticated = useCallback(() => {
-    if (typeof window !== "undefined") {
-      const next = new URLSearchParams(window.location.search).get("next");
-      if (next) {
-        try {
-          const url = new URL(next, window.location.origin);
-          if (
-            url.origin === window.location.origin ||
-            allowedOrigins.includes(url.origin)
-          ) {
-            window.location.replace(url.toString());
-            return;
-          }
-        } catch {
-          // ignore invalid URLs
-        }
+    const nextParam = new URLSearchParams(window.location.search).get("next");
+    if (nextParam) {
+      const url = new URL(nextParam, window.location.origin);
+      if (url.origin !== window.location.origin) {
+        window.location.replace(url.toString());
+        return;
       }
     }
     navigate({ to: "/studio", replace: true });
-  }, [allowedOrigins, navigate]);
+  }, [navigate]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -64,27 +44,21 @@ export const useLoginPage = () => {
     }
   }, [isLoggedIn, handleAuthenticated]);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.SubmitEvent) => {
     e.preventDefault();
-    // setError("");
 
-    try {
-      const data = await loginMutation.mutateAsync({ email, password });
-      if (data) {
-        await refresh();
-        handleAuthenticated();
-      }
-    } catch (err: any) {
-      toast.error(err?.message || err?.body?.error || "Failed to sign in");
-    }
+    loginMutation.mutate(form);
   };
-
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
   return {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    // error,
+    form,
+    handleFormChange,
     loading: loginMutation.isPending,
     handleLogin,
   };

@@ -1,8 +1,7 @@
-import { Command, Menu, Search, X } from "@operonstudio/icons";
+import { Menu, X } from "@operonstudio/icons";
 import { Box, Button } from "@operonstudio/ui";
 import { Link } from "@tanstack/react-router";
-import { SearchCommandPalette } from "../search-command-palette";
-import { DesktopAuth } from "./components/desktop-auth";
+import { DesktopAuthButtons } from "./components/desktop-auth";
 import { ProductsMegaMenu } from "./components/mega-menu";
 import { MobileDrawer } from "./components/mobile-drawer";
 import { mainNavLinks } from "./data";
@@ -12,10 +11,7 @@ import * as classes from "./style";
 export const SiteHeader = () => {
   const {
     isLoggedIn,
-    isSearchOpen,
     isMobileMenuOpen,
-    openSearch,
-    closeSearch,
     toggleMobileMenu,
     closeMobileMenu,
     handleLogout,
@@ -53,21 +49,7 @@ export const SiteHeader = () => {
 
         {/* Right Section: Search & Auth */}
         <Box {...classes.headerRightStyle}>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={openSearch}
-            {...classes.searchTriggerStyle}
-            aria-label="Search documentation and services"
-          >
-            <Search size={14} />
-            <span {...classes.searchSpanStyle}>Search</span>
-            <span {...classes.keyhintBadgeStyle}>
-              <Command size={10} />K
-            </span>
-          </Button>
-
-          <DesktopAuth isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+          <DesktopAuthButtons isLoggedIn={isLoggedIn} onLogout={handleLogout} />
 
           {/* Mobile Menu Toggle Button */}
           <Button
@@ -90,8 +72,6 @@ export const SiteHeader = () => {
           onLogout={handleLogout}
         />
       </Box>
-
-      <SearchCommandPalette isOpen={isSearchOpen} onClose={closeSearch} />
     </>
   );
 };

@@ -1,4 +1,5 @@
 import { Badge, Box } from "@operonstudio/ui";
+import { Link } from "@tanstack/react-router";
 import type { StudioCardProps } from "./data";
 import { useStudioCard } from "./hook";
 import * as classes from "./style";
@@ -7,8 +8,8 @@ export const StudioCard = ({ service, href }: StudioCardProps) => {
   const { service: item, Icon, tagType } = useStudioCard(service);
 
   return (
-    <a
-      href={href}
+    <Link
+      to={href}
       aria-label={`${item.name} — ${item.description}`}
       {...classes.serviceLinkStyle}
     >
@@ -36,6 +37,6 @@ export const StudioCard = ({ service, href }: StudioCardProps) => {
           <p {...classes.serviceDescStyle}>{item.description}</p>
         </Box>
       </Box>
-    </a>
+    </Link>
   );
 };
