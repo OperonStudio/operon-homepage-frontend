@@ -161,7 +161,7 @@ export const StudioOverview = () => {
       <Box {...classes.gridStyle}>
         <Panel
           title="Product adoption"
-          caption="Projects with each console switched on."
+          caption="Projects with each product switched on."
         >
           {adoption.map(({ product, count }) => (
             <PanelRow
@@ -194,7 +194,7 @@ export const StudioOverview = () => {
                   key={project.id}
                   label={project.name}
                   value={productsOf(project.products).length}
-                  meta="consoles"
+                  meta="products"
                 />
               ))
           )}

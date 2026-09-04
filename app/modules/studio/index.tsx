@@ -1,4 +1,3 @@
-export { StudioConsoles } from "./sections/consoles";
 export { StudioEnvironments } from "./sections/environments";
 export { StudioKeys } from "./sections/keys";
 export { StudioOverview } from "./sections/overview";

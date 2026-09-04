@@ -1,37 +1,62 @@
 import { css } from "@morph-css/kit";
 
-export const heroSectionStyle = css({
-  width: "100%",
-  backgroundColor: "var(--operon-color-background)",
-  color: "var(--operon-color-text)",
-  padding: "36px 16px 48px",
-  display: "flex",
-  justifyContent: "center",
-  borderBottom: "1px solid var(--operon-color-border)",
-  position: "relative",
-  overflow: "hidden",
-  boxSizing: "border-box",
-  "@media (min-width: 768px)": {
-    padding: "72px 24px 88px",
+export const heroBandStyle = css({
+  paddingTop: "112px",
+  paddingBottom: "104px",
+  "@media (max-width: 800px)": {
+    paddingTop: "72px",
+    paddingBottom: "64px",
   },
 });
 
-export const heroInnerStyle = css({
-  width: "100%",
-  maxWidth: "1200px",
+export const titleStyle = css({
+  margin: 0,
+  maxWidth: "16ch",
+  fontSize: "clamp(40px, 7vw, 76px)",
+  fontWeight: "800",
+  letterSpacing: "-0.045em",
+  lineHeight: 1.02,
+  color: "var(--operon-color-text)",
+});
+
+export const bodyStyle = css({
+  margin: "28px 0 0",
+  maxWidth: "60ch",
+  fontSize: "clamp(16px, 1.6vw, 19px)",
+  lineHeight: 1.6,
+  color: "var(--operon-color-text-muted)",
+});
+
+export const ctaStyle = css({
+  marginTop: "36px",
+});
+
+/** Three figures on the canvas, separated by space rather than by rules. */
+export const metricsStyle = css({
   display: "grid",
-  gridTemplateColumns: "1fr",
-  gap: "32px",
-  alignItems: "center",
-  position: "relative",
-  zIndex: 1,
-  boxSizing: "border-box",
-  "@media (min-width: 768px)": {
-    gridTemplateColumns: "1fr",
-    gap: "40px",
+  gridTemplateColumns: "repeat(auto-fit, minmax(180px, max-content))",
+  gap: "48px",
+  marginTop: "72px",
+  "@media (max-width: 800px)": {
+    gap: "28px",
+    marginTop: "48px",
   },
-  "@media (min-width: 992px)": {
-    gridTemplateColumns: "1.05fr 0.95fr",
-    gap: "48px",
-  },
+});
+
+export const metricStyle = css({
+  display: "flex",
+  flexDirection: "column",
+  gap: "6px",
+});
+
+export const metricValueStyle = css({
+  fontSize: "var(--operon-font-size-2xl)",
+  fontWeight: "700",
+  letterSpacing: "-0.03em",
+  color: "var(--operon-color-text)",
+});
+
+export const metricLabelStyle = css({
+  fontSize: "var(--operon-font-size-md)",
+  color: "var(--operon-color-text-muted)",
 });

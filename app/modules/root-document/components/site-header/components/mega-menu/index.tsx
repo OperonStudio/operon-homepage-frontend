@@ -28,6 +28,7 @@ export const ProductsMegaMenu = () => {
                 <Box {...classes.megaMenuHeaderStyle}>{section.header}</Box>
                 <Link
                   to={section.to}
+                  hash={section.hash}
                   {...classes.megaMenuItemStyle}
                   onClick={closeMenu}
                 >

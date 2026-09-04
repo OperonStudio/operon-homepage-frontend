@@ -28,6 +28,7 @@ export const MobileDrawer = ({
             <Link
               key={prod.label}
               to={prod.to}
+              hash={prod.hash}
               {...classes.mobileSubLinkStyle}
               onClick={onClose}
             >

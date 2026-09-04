@@ -15,7 +15,6 @@ import { Route as ForgotIndexRouteImport } from './routes/forgot/index'
 import { Route as LoginIndexRouteImport } from './routes/login/index'
 import { Route as RegisterIndexRouteImport } from './routes/register/index'
 import { Route as StudioIndexRouteImport } from './routes/studio/index'
-import { Route as StudioConsolesIndexRouteImport } from './routes/studio/consoles/index'
 import { Route as StudioEnvironmentsIndexRouteImport } from './routes/studio/environments/index'
 import { Route as StudioKeysIndexRouteImport } from './routes/studio/keys/index'
 import { Route as StudioProjectsIndexRouteImport } from './routes/studio/projects/index'
@@ -51,11 +50,6 @@ const StudioIndexRoute = StudioIndexRouteImport.update({
   path: '/',
   getParentRoute: () => StudioRouteRoute,
 } as any)
-const StudioConsolesIndexRoute = StudioConsolesIndexRouteImport.update({
-  id: '/consoles/',
-  path: '/consoles/',
-  getParentRoute: () => StudioRouteRoute,
-} as any)
 const StudioEnvironmentsIndexRoute = StudioEnvironmentsIndexRouteImport.update({
   id: '/environments/',
   path: '/environments/',
@@ -84,7 +78,6 @@ export interface FileRoutesByFullPath {
   '/login/': typeof LoginIndexRoute
   '/register/': typeof RegisterIndexRoute
   '/studio/': typeof StudioIndexRoute
-  '/studio/consoles/': typeof StudioConsolesIndexRoute
   '/studio/environments/': typeof StudioEnvironmentsIndexRoute
   '/studio/keys/': typeof StudioKeysIndexRoute
   '/studio/projects/': typeof StudioProjectsIndexRoute
@@ -96,7 +89,6 @@ export interface FileRoutesByTo {
   '/login': typeof LoginIndexRoute
   '/register': typeof RegisterIndexRoute
   '/studio': typeof StudioIndexRoute
-  '/studio/consoles': typeof StudioConsolesIndexRoute
   '/studio/environments': typeof StudioEnvironmentsIndexRoute
   '/studio/keys': typeof StudioKeysIndexRoute
   '/studio/projects': typeof StudioProjectsIndexRoute
@@ -110,7 +102,6 @@ export interface FileRoutesById {
   '/login/': typeof LoginIndexRoute
   '/register/': typeof RegisterIndexRoute
   '/studio/': typeof StudioIndexRoute
-  '/studio/consoles/': typeof StudioConsolesIndexRoute
   '/studio/environments/': typeof StudioEnvironmentsIndexRoute
   '/studio/keys/': typeof StudioKeysIndexRoute
   '/studio/projects/': typeof StudioProjectsIndexRoute
@@ -125,7 +116,6 @@ export interface FileRouteTypes {
     | '/login/'
     | '/register/'
     | '/studio/'
-    | '/studio/consoles/'
     | '/studio/environments/'
     | '/studio/keys/'
     | '/studio/projects/'
@@ -137,7 +127,6 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/studio'
-    | '/studio/consoles'
     | '/studio/environments'
     | '/studio/keys'
     | '/studio/projects'
@@ -150,7 +139,6 @@ export interface FileRouteTypes {
     | '/login/'
     | '/register/'
     | '/studio/'
-    | '/studio/consoles/'
     | '/studio/environments/'
     | '/studio/keys/'
     | '/studio/projects/'
@@ -209,13 +197,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudioIndexRouteImport
       parentRoute: typeof StudioRouteRoute
     }
-    '/studio/consoles/': {
-      id: '/studio/consoles/'
-      path: '/consoles'
-      fullPath: '/studio/consoles/'
-      preLoaderRoute: typeof StudioConsolesIndexRouteImport
-      parentRoute: typeof StudioRouteRoute
-    }
     '/studio/environments/': {
       id: '/studio/environments/'
       path: '/environments'
@@ -249,7 +230,6 @@ declare module '@tanstack/react-router' {
 
 interface StudioRouteRouteChildren {
   StudioIndexRoute: typeof StudioIndexRoute
-  StudioConsolesIndexRoute: typeof StudioConsolesIndexRoute
   StudioEnvironmentsIndexRoute: typeof StudioEnvironmentsIndexRoute
   StudioKeysIndexRoute: typeof StudioKeysIndexRoute
   StudioProjectsIndexRoute: typeof StudioProjectsIndexRoute
@@ -258,7 +238,6 @@ interface StudioRouteRouteChildren {
 
 const StudioRouteRouteChildren: StudioRouteRouteChildren = {
   StudioIndexRoute: StudioIndexRoute,
-  StudioConsolesIndexRoute: StudioConsolesIndexRoute,
   StudioEnvironmentsIndexRoute: StudioEnvironmentsIndexRoute,
   StudioKeysIndexRoute: StudioKeysIndexRoute,
   StudioProjectsIndexRoute: StudioProjectsIndexRoute,

@@ -1,7 +1,6 @@
 import { RequireAuth, useAuth } from "@operonstudio/auth";
 import {
   BarChart3,
-  Boxes,
   Code,
   Database,
   Globe,
@@ -64,7 +63,6 @@ const NAV = [
   { href: "/studio/environments", label: "Environments", icon: Globe },
   { href: "/studio/keys", label: "API keys", icon: KeyRound },
   { href: "/studio/team", label: "Team", icon: User },
-  { href: "/studio/consoles", label: "Consoles", icon: Boxes },
 ];
 
 /**
