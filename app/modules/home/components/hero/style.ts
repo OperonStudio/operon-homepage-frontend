@@ -1,6 +1,7 @@
 import { css } from "@morph-css/kit";
 
 export const heroBandStyle = css({
+  textAlign: "center",
   paddingTop: "112px",
   paddingBottom: "104px",
   "@media (max-width: 800px)": {
@@ -10,8 +11,8 @@ export const heroBandStyle = css({
 });
 
 export const titleStyle = css({
-  margin: 0,
-  maxWidth: "16ch",
+  margin: "0 auto",
+  maxWidth: "18ch",
   fontSize: "clamp(40px, 7vw, 76px)",
   fontWeight: "800",
   letterSpacing: "-0.045em",
@@ -20,21 +21,23 @@ export const titleStyle = css({
 });
 
 export const bodyStyle = css({
-  margin: "28px 0 0",
-  maxWidth: "60ch",
+  margin: "28px auto 0",
+  maxWidth: "58ch",
   fontSize: "clamp(16px, 1.6vw, 19px)",
   lineHeight: 1.6,
   color: "var(--operon-color-text-muted)",
 });
 
 export const ctaStyle = css({
+  justifyContent: "center",
   marginTop: "36px",
 });
 
 /** Three figures on the canvas, separated by space rather than by rules. */
 export const metricsStyle = css({
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(180px, max-content))",
+  display: "flex",
+  flexWrap: "wrap",
+  justifyContent: "center",
   gap: "48px",
   marginTop: "72px",
   "@media (max-width: 800px)": {
@@ -46,6 +49,7 @@ export const metricsStyle = css({
 export const metricStyle = css({
   display: "flex",
   flexDirection: "column",
+  alignItems: "center",
   gap: "6px",
 });
 
