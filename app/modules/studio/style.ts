@@ -89,32 +89,21 @@ export const studioCategoryBlockStyle = css({
 export const studioCategoryRailStyle = css({
   display: "flex",
   alignItems: "center",
-  gap: "14px",
-  marginBottom: "16px",
+  marginBottom: "12px",
 });
 
 export const studioCategoryLabelStyle = css({
-  fontFamily: "var(--operon-typography-mono)",
-  fontSize: "11px",
-  fontWeight: "700",
-  textTransform: "uppercase",
-  letterSpacing: "0.1em",
-  color: "var(--operon-color-text-muted)",
-  whiteSpace: "nowrap",
-});
-
-export const studioCategoryLineStyle = css({
-  flex: 1,
-  height: "1px",
-  backgroundColor: "var(--operon-color-border)",
+  fontSize: "var(--operon-font-size-lg)",
+  fontWeight: "600",
+  letterSpacing: "-0.01em",
+  color: "var(--operon-color-text)",
 });
 
 export const studioGridStyle = css({
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
-  gap: "1px",
-  backgroundColor: "var(--operon-color-border)",
-  borderTop: `1px solid var(--operon-color-border)`,
+  gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
+  alignItems: "start",
+  gap: "10px",
 });
 
 export const noResultsStyle = css({

@@ -98,6 +98,7 @@ export const panelLinkStyle = css({
 export const gridStyle = css({
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+  alignItems: "start",
   gap: "14px",
 });
 

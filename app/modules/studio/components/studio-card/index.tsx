@@ -33,7 +33,9 @@ export const StudioCard = ({ service, href }: StudioCardProps) => {
           <Icon size={16} />
         </Box>
         <Box {...classes.serviceCardBodyStyle}>
-          <span {...classes.serviceNameStyle}>{item.name}</span>
+          <span data-service-name="true" {...classes.serviceNameStyle}>
+            {item.name}
+          </span>
           <p {...classes.serviceDescStyle}>{item.description}</p>
         </Box>
       </Box>

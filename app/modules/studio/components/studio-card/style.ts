@@ -11,31 +11,29 @@ export const serviceCardStyle = css({
   position: "relative",
   display: "flex",
   flexDirection: "column",
-  gap: "12px",
-  padding: "20px",
-  backgroundColor: "var(--operon-color-surface)",
+  gap: "10px",
+  padding: "18px",
+  borderRadius: "18px",
+  backgroundColor: "var(--operon-color-surface-sunken)",
   color: "inherit",
   cursor: "pointer",
   textDecoration: "none",
   height: "100%",
   boxSizing: "border-box",
-  transition: "background-color 150ms ease",
-  "&:hover": {
-    backgroundColor: "var(--operon-color-background)",
-  },
+  transition: "color var(--operon-motion-fast) var(--operon-motion-easing)",
   "&:hover [data-icon-well]": {
+    color: "var(--operon-color-primary)",
+  },
+  "&:hover [data-service-name]": {
     color: "var(--operon-color-primary)",
   },
 });
 
 export const serviceIconWrapperStyle = css({
-  width: "32px",
-  height: "32px",
   display: "flex",
   alignItems: "center",
-  justifyContent: "center",
   color: "var(--operon-color-text-muted)",
-  transition: "color 150ms ease",
+  transition: "color var(--operon-motion-fast) var(--operon-motion-easing)",
 });
 
 export const serviceCardBodyStyle = css({
@@ -45,10 +43,11 @@ export const serviceCardBodyStyle = css({
 });
 
 export const serviceNameStyle = css({
-  fontSize: "14.5px",
-  fontWeight: "700",
+  fontSize: "var(--operon-font-size-md)",
+  fontWeight: "600",
   color: "var(--operon-color-text)",
   lineHeight: 1.3,
+  transition: "color var(--operon-motion-fast) var(--operon-motion-easing)",
 });
 
 export const serviceDescStyle = css({
@@ -59,13 +58,6 @@ export const serviceDescStyle = css({
 
 export const serviceTagStyle = css({
   position: "absolute",
-  top: "16px",
-  right: "16px",
-  fontFamily: "var(--operon-typography-mono)",
-  fontSize: "9.5px",
-  fontWeight: "700",
-  textTransform: "uppercase",
-  letterSpacing: "0.05em",
-  padding: "2px 7px",
-  borderRadius: "3px",
+  top: "14px",
+  right: "14px",
 });

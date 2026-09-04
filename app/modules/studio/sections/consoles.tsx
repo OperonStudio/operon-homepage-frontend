@@ -50,7 +50,6 @@ export const StudioConsoles = () => {
             <span {...cardClasses.studioCategoryLabelStyle}>
               {category.title}
             </span>
-            <span {...cardClasses.studioCategoryLineStyle} aria-hidden="true" />
           </Box>
           <Box {...cardClasses.studioGridStyle}>
             {category.services.map((service) => (
