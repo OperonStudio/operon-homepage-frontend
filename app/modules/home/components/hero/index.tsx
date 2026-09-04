@@ -9,7 +9,6 @@ export const Hero = () => {
 
   return (
     <section {...classes.heroSectionStyle}>
-      <Box {...classes.heroGridOverlayStyle} aria-hidden="true" />
 
       <Box {...classes.heroInnerStyle}>
         <HeroLeft metrics={heroProps.metrics} />

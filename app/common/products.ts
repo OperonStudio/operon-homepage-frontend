@@ -21,4 +21,7 @@ export const ANALYTICS_URL = useProdUrls
   ? "https://analytics.operonstudio.tech"
   : (import.meta.env.VITE_ANALYTICS_URL ?? "http://localhost:4003");
 
+/** Studio is served by this app, so it is a path rather than an origin. */
+export const STUDIO_URL = "/studio";
+
 export const PRODUCT_URLS = [COMPOSE_URL, CODEBLOCKS_URL, ANALYTICS_URL];

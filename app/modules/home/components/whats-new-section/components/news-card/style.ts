@@ -14,17 +14,7 @@ export const newsCardStyle = css({
   "&:hover": {
     transform: "translateY(-4px)",
     borderColor: "var(--operon-color-primary)",
-    boxShadow: "var(--operon-shadow-lg)",
   },
-});
-
-export const newsCardBannerStyle = css({
-  height: "140px",
-  width: "100%",
-  display: "flex",
-  alignItems: "flex-end",
-  padding: "16px",
-  position: "relative",
 });
 
 export const newsCardBodyStyle = css({

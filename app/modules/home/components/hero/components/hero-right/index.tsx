@@ -32,7 +32,6 @@ export const HeroRight = ({
         opacity: 1,
         transform: "translate3d(0px, 0px, 0px) scale(1)",
         borderColor: "var(--operon-color-primary)",
-        boxShadow: "0 18px 42px rgba(9, 114, 211, 0.16)",
       };
     }
     if (depth === 1) {
@@ -44,7 +43,6 @@ export const HeroRight = ({
         opacity: 0.94,
         transform: "translate3d(24px, 28px, 0px) scale(0.96)",
         borderColor: "var(--operon-color-border)",
-        boxShadow: "0 10px 28px rgba(0, 0, 0, 0.08)",
         cursor: "pointer",
       };
     }
@@ -56,7 +54,6 @@ export const HeroRight = ({
       opacity: 0.88,
       transform: "translate3d(48px, 56px, 0px) scale(0.92)",
       borderColor: "var(--operon-color-border)",
-      boxShadow: "0 6px 18px rgba(0, 0, 0, 0.05)",
       cursor: "pointer",
     };
   };

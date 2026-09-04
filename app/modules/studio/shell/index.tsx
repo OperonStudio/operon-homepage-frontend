@@ -18,30 +18,43 @@ import {
   ScopeSwitcher,
 } from "@operonstudio/ui";
 import { Link, useLocation } from "@tanstack/react-router";
-import { ANALYTICS_URL, CODEBLOCKS_URL, COMPOSE_URL } from "#/common/products";
+import {
+  ANALYTICS_URL,
+  CODEBLOCKS_URL,
+  COMPOSE_URL,
+  STUDIO_URL,
+} from "#/common/products";
 import { usePlatform } from "../platform/hooks";
+import { StudioSearch } from "./search";
 
 const PRODUCTS: AppShellProduct[] = [
+  {
+    key: "homepage",
+    label: "Studio",
+    description: "Workspaces and projects",
+    url: STUDIO_URL,
+    icon: <LayoutDashboard size={18} />,
+  },
   {
     key: "compose",
     label: "Compose",
     description: "Content and rules",
     url: COMPOSE_URL,
-    icon: <Database size={16} />,
+    icon: <Database size={18} />,
   },
   {
     key: "codeblocks",
     label: "Codeblocks",
     description: "Backend orchestration",
     url: CODEBLOCKS_URL,
-    icon: <Code size={16} />,
+    icon: <Code size={18} />,
   },
   {
     key: "analytics",
     label: "Analytics",
     description: "Event tracking",
     url: ANALYTICS_URL,
-    icon: <BarChart3 size={16} />,
+    icon: <BarChart3 size={18} />,
   },
 ];
 
@@ -117,6 +130,7 @@ export const StudioShell = ({ children }: { children: React.ReactNode }) => {
         products={PRODUCTS}
         navGroups={navGroups}
         homepageUrl="/"
+        topbarStart={<StudioSearch />}
         sidebarHeader={
           <Box style={{ padding: "8px 8px 10px" }}>
             <ScopeSwitcher
@@ -154,10 +168,6 @@ export const StudioShell = ({ children }: { children: React.ReactNode }) => {
         onSignOut={async () => {
           await logout();
           window.location.href = "/";
-        }}
-        onSwitchProduct={(product) => {
-          window.location.href = product.url;
-          return true;
         }}
       >
         {children}

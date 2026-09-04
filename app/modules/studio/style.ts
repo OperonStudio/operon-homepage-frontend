@@ -1,12 +1,5 @@
 import { css } from "@morph-css/kit";
 
-const studioPalette = {
-  line: "#E3E7EF",
-  textPrimary: "#151924",
-  textMuted: "#5E6577",
-  signal: "#0972D3",
-};
-
 export const studioContainerStyle = css({
   display: "flex",
   flexDirection: "column",
@@ -30,36 +23,23 @@ export const studioHeaderStyle = css({
 });
 
 export const studioEyebrowStyle = css({
-  fontFamily: "var(--operon-typography-mono)",
-  fontSize: "11px",
-  fontWeight: "700",
-  letterSpacing: "0.12em",
-  textTransform: "uppercase",
-  color: studioPalette.signal,
+  fontSize: "var(--operon-font-size-sm)",
+  fontWeight: "500",
+  color: "var(--operon-color-text-muted)",
   marginBottom: "8px",
-  display: "inline-flex",
-  alignItems: "center",
-  gap: "8px",
-  "&::before": {
-    content: '""',
-    display: "inline-block",
-    width: "14px",
-    height: "1px",
-    backgroundColor: studioPalette.signal,
-  },
 });
 
 export const studioTitleStyle = css({
   fontSize: "28px",
   fontWeight: "700",
-  color: studioPalette.textPrimary,
+  color: "var(--operon-color-text)",
   letterSpacing: "-0.02em",
   fontFamily: "var(--operon-typography-heading)",
 });
 
 export const studioSubtitleStyle = css({
   fontSize: "14px",
-  color: studioPalette.textMuted,
+  color: "var(--operon-color-text-muted)",
   marginTop: "4px",
   lineHeight: "1.5",
 });
@@ -75,19 +55,18 @@ export const searchInputStyle = css({
   width: "100%",
   padding: "10px 14px 10px 38px",
   fontSize: "13.5px",
-  border: `1px solid ${studioPalette.line}`,
-  borderRadius: "var(--operon-radius-lg)",
-  // backgroundColor: "#ffffff",
-  // color: studioPalette.textPrimary,
+  border: `1px solid var(--operon-color-border)`,
+  borderRadius: "var(--operon-radius-full)",
+  backgroundColor: "var(--operon-color-surface)",
+  color: "var(--operon-color-text)",
   outline: "none",
-  boxShadow: "var(--operon-shadow-xs)",
   transition: "border-color 150ms ease, box-shadow 150ms ease",
   "&:focus": {
-    borderColor: studioPalette.signal,
+    borderColor: "var(--operon-color-primary)",
     boxShadow: "var(--operon-shadow-focus)",
   },
   "&::placeholder": {
-    color: studioPalette.textMuted,
+    color: "var(--operon-color-text-muted)",
   },
 });
 
@@ -96,7 +75,7 @@ export const searchIconStyle = css({
   left: "12px",
   top: "50%",
   transform: "translateY(-50%)",
-  color: studioPalette.textMuted,
+  color: "var(--operon-color-text-muted)",
   pointerEvents: "none",
 });
 
@@ -120,27 +99,27 @@ export const studioCategoryLabelStyle = css({
   fontWeight: "700",
   textTransform: "uppercase",
   letterSpacing: "0.1em",
-  color: studioPalette.textMuted,
+  color: "var(--operon-color-text-muted)",
   whiteSpace: "nowrap",
 });
 
 export const studioCategoryLineStyle = css({
   flex: 1,
   height: "1px",
-  backgroundColor: studioPalette.line,
+  backgroundColor: "var(--operon-color-border)",
 });
 
 export const studioGridStyle = css({
   display: "grid",
   gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
   gap: "1px",
-  backgroundColor: studioPalette.line,
-  border: `1px solid ${studioPalette.line}`,
+  backgroundColor: "var(--operon-color-border)",
+  borderTop: `1px solid var(--operon-color-border)`,
 });
 
 export const noResultsStyle = css({
   padding: "48px 0",
   textAlign: "center",
-  color: studioPalette.textMuted,
+  color: "var(--operon-color-text-muted)",
   fontSize: "14px",
 });

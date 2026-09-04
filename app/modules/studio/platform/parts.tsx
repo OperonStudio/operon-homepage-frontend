@@ -125,12 +125,22 @@ export const Chip = ({
 export const Stat = ({
   label,
   value,
+  secondary,
 }: {
   label: string;
   value: React.ReactNode;
+  /** A quieter tail on the figure, e.g. the cents on a currency value. */
+  secondary?: React.ReactNode;
 }) => (
   <Box {...classes.statCardStyle}>
     <Box {...classes.statLabelStyle}>{label}</Box>
-    <Box {...classes.statValueStyle}>{value}</Box>
+    <Box {...classes.statValueStyle}>
+      {value}
+      {secondary != null && (
+        <span className={classes.statSecondaryStyle.className}>
+          {secondary}
+        </span>
+      )}
+    </Box>
   </Box>
 );

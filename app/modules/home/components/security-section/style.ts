@@ -1,24 +1,10 @@
 import { css } from "@morph-css/kit";
 
-export const suitePalette = {
-  ink: "#0B0E14",
-  line: "#E3E7EF",
-  lineFaint: "#EEF1F6",
-  textPrimary: "#151924",
-  textMuted: "#5E6577",
-  signal: "#0972D3",
-  signalGhost: "#F2F8FD",
-  live: "#0D9A73",
-  liveGhost: "#E6F7F1",
-  new: "#3D5AFE",
-  newGhost: "#EBEEFF",
-};
-
 export const securitySectionStyle = css({
   width: "100%",
-  backgroundColor: suitePalette.lineFaint,
-  borderTop: `1px solid ${suitePalette.line}`,
-  borderBottom: `1px solid ${suitePalette.line}`,
+  backgroundColor: "var(--operon-color-background)",
+  borderTop: `1px solid var(--operon-color-border)`,
+  borderBottom: `1px solid var(--operon-color-border)`,
   padding: "72px 24px 88px",
   display: "flex",
   justifyContent: "center",
@@ -63,26 +49,26 @@ export const securityGridStyle = css({
   display: "grid",
   gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
   gap: "1px",
-  backgroundColor: suitePalette.line,
-  border: `1px solid ${suitePalette.line}`,
+  backgroundColor: "var(--operon-color-border)",
+  border: `1px solid var(--operon-color-border)`,
   width: "100%",
   marginTop: "36px",
 });
 
 export const securityCardStyle = css({
   padding: "20px",
-  backgroundColor: "#ffffff",
+  backgroundColor: "var(--operon-color-surface)",
   display: "flex",
   flexDirection: "column",
   gap: "12px",
   position: "relative",
   transition: "background-color 150ms ease",
   "&:hover": {
-    backgroundColor: suitePalette.lineFaint,
+    backgroundColor: "var(--operon-color-background)",
   },
   "&:hover [data-icon-well]": {
-    borderColor: suitePalette.signal,
-    color: suitePalette.signal,
+    borderColor: "var(--operon-color-primary)",
+    color: "var(--operon-color-primary)",
   },
 });
 
@@ -92,16 +78,16 @@ export const securityIconWrapperStyle = css({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  border: `1px solid ${suitePalette.line}`,
+  border: `1px solid var(--operon-color-border)`,
   borderRadius: "4px",
-  color: suitePalette.textPrimary,
+  color: "var(--operon-color-text)",
   transition: "border-color 150ms ease, color 150ms ease",
 });
 
 export const securityStatStyle = css({
   fontSize: "22px",
   fontWeight: "800",
-  color: suitePalette.signal,
+  color: "var(--operon-color-primary)",
   fontFamily: "var(--operon-typography-mono)",
 });
 
@@ -114,12 +100,12 @@ export const securityCardBodyStyle = css({
 export const securityCardTitleStyle = css({
   fontSize: "14.5px",
   fontWeight: "700",
-  color: suitePalette.textPrimary,
+  color: "var(--operon-color-text)",
   lineHeight: 1.3,
 });
 
 export const securityCardDescStyle = css({
   fontSize: "12.5px",
-  color: suitePalette.textMuted,
+  color: "var(--operon-color-text-muted)",
   lineHeight: "1.5",
 });

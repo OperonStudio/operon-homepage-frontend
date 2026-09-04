@@ -4,7 +4,6 @@ export interface NewsItem {
   title: string;
   description: string;
   href: string;
-  gradient: string;
   badgeColor: string;
   category: "Compose" | "Codeblocks" | "Analytics";
 }

@@ -16,16 +16,6 @@ export const heroSectionStyle = css({
   },
 });
 
-export const heroGridOverlayStyle = css({
-  position: "absolute",
-  inset: 0,
-  backgroundImage:
-    "radial-gradient(var(--operon-color-border-subtle) 1px, transparent 1px)",
-  backgroundSize: "28px 28px",
-  opacity: 0.6,
-  pointerEvents: "none",
-});
-
 export const heroInnerStyle = css({
   width: "100%",
   maxWidth: "1200px",

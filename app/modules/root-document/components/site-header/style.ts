@@ -41,7 +41,7 @@ export const logoMarkStyle = css({
   width: "26px",
   height: "26px",
   borderRadius: "var(--operon-radius-sm)",
-  background: "linear-gradient(135deg, #0972d3 0%, #0056a8 100%)",
+  background: "var(--operon-color-text)",
   color: "#ffffff",
   display: "inline-flex",
   alignItems: "center",
@@ -263,7 +263,7 @@ export const mobileDrawerStyle = css({
   gap: "16px",
   overflowY: "auto",
   borderTop: "1px solid var(--operon-color-border)",
-  boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.3)",
+  boxShadow: "var(--operon-shadow-lg)",
   animation: "operon-slide-up 150ms ease-out",
   "@media (min-width: 900px)": {
     display: "none",

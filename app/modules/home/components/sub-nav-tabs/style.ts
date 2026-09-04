@@ -10,7 +10,6 @@ export const subNavContainerStyle = css({
   display: "flex",
   justifyContent: "center",
   padding: "0 24px",
-  boxShadow: "var(--operon-shadow-xs)",
   boxSizing: "border-box",
   "@media (max-width: 600px)": {
     top: "93px",

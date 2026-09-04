@@ -30,9 +30,6 @@ export const subtitleStyle = css({
 });
 
 export const panelStyle = css({
-  border: "1px solid var(--operon-color-border)",
-  borderRadius: "var(--operon-radius-lg, 12px)",
-  background: "var(--operon-color-surface)",
   overflow: "hidden",
 });
 
@@ -41,7 +38,6 @@ export const tableHeadStyle = css({
   gap: "12px",
   padding: "9px 16px",
   borderBottom: "1px solid var(--operon-color-border)",
-  background: "var(--operon-color-surface-raised, rgba(0,0,0,0.02))",
   fontSize: "10.5px",
   fontWeight: 600,
   letterSpacing: "0.05em",
@@ -107,30 +103,32 @@ export const barStyle = css({
 export const statsRowStyle = css({
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
-  gap: "12px",
+  gap: "32px",
 });
 
 export const statCardStyle = css({
-  border: "1px solid var(--operon-color-border)",
-  borderRadius: "var(--operon-radius-lg, 12px)",
-  background: "var(--operon-color-surface)",
-  padding: "14px 16px",
+  paddingRight: "24px",
 });
 
 export const statLabelStyle = css({
-  fontSize: "10.5px",
-  fontWeight: 600,
-  letterSpacing: "0.05em",
-  textTransform: "uppercase",
-  color: "var(--operon-color-text-subtle)",
+  fontSize: "var(--operon-font-size-sm)",
+  fontWeight: 500,
+  color: "var(--operon-color-text-muted)",
 });
 
 export const statValueStyle = css({
-  fontSize: "24px",
-  fontWeight: 650,
-  lineHeight: 1.2,
-  marginTop: "4px",
+  fontSize: "var(--operon-font-size-3xl)",
+  fontWeight: 700,
+  lineHeight: 1.1,
+  letterSpacing: "-0.03em",
+  marginTop: "6px",
   color: "var(--operon-color-text)",
+});
+
+/** The quieter tail of a figure, e.g. the cents on a currency value. */
+export const statSecondaryStyle = css({
+  color: "var(--operon-color-text-subtle)",
+  fontWeight: 500,
 });
 
 export const chipRowStyle = css({

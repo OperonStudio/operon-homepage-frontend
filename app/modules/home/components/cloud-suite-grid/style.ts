@@ -1,19 +1,5 @@
 import { css } from "@morph-css/kit";
 
-export const suitePalette = {
-  ink: "#0B0E14",
-  line: "#E3E7EF",
-  lineFaint: "#EEF1F6",
-  textPrimary: "#151924",
-  textMuted: "#5E6577",
-  signal: "#0972D3",
-  signalGhost: "#F2F8FD",
-  live: "#0D9A73",
-  liveGhost: "#E6F7F1",
-  new: "#3D5AFE",
-  newGhost: "#EBEEFF",
-};
-
 export const suiteSectionStyle = css({
   width: "100%",
   maxWidth: "1200px",
@@ -67,20 +53,20 @@ export const suiteCategoryLabelStyle = css({
   fontWeight: "700",
   textTransform: "uppercase",
   letterSpacing: "0.1em",
-  color: suitePalette.textMuted,
+  color: "var(--operon-color-text-muted)",
   whiteSpace: "nowrap",
 });
 
 export const suiteCategoryLineStyle = css({
   flex: 1,
   height: "1px",
-  backgroundColor: suitePalette.line,
+  backgroundColor: "var(--operon-color-border)",
 });
 
 export const suiteGridStyle = css({
   display: "grid",
   gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
   gap: "1px",
-  backgroundColor: suitePalette.line,
-  border: `1px solid ${suitePalette.line}`,
+  backgroundColor: "var(--operon-color-border)",
+  border: `1px solid var(--operon-color-border)`,
 });
