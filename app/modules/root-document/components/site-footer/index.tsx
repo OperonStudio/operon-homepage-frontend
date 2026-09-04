@@ -1,4 +1,7 @@
-import { Box } from "@operonstudio/ui";
+import {
+  Box,
+  OperonLockup,
+} from "@operonstudio/ui";
 import { Link } from "@tanstack/react-router";
 import { useHomePage } from "../../hook";
 import * as classes from "./style";
@@ -19,12 +22,7 @@ export const SiteFooter = () => {
       <Box {...classes.footerInnerStyle}>
         <Box {...classes.footerBrandColStyle}>
           <Box {...classes.logoStyle}>
-            <img
-              src="/operon-lockup.svg"
-              alt="Operon"
-              height="24"
-              style={{ display: "block" }}
-            />
+            <OperonLockup height={24} />
           </Box>
 
           <Box

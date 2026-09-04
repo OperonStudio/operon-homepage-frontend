@@ -1,5 +1,9 @@
 import { Menu, X } from "@operonstudio/icons";
-import { Box, Button } from "@operonstudio/ui";
+import {
+  Box,
+  Button,
+  OperonLockup,
+} from "@operonstudio/ui";
 import { Link } from "@tanstack/react-router";
 import { DesktopAuthButtons } from "./components/desktop-auth";
 import { ProductsMegaMenu } from "./components/mega-menu";
@@ -21,12 +25,7 @@ export const SiteHeader = () => {
     <Box {...classes.headerStyle}>
       <Box {...classes.headerLeftStyle}>
         <Link to="/" {...classes.logoStyle} aria-label="Operon Homepage">
-          <img
-            src="/operon-lockup.svg"
-            alt="Operon"
-            height="26"
-            style={{ display: "block" }}
-          />
+          <OperonLockup height={26} />
         </Link>
 
         <nav aria-label="Main Navigation">
