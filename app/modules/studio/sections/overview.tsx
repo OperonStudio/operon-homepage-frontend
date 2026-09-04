@@ -15,11 +15,12 @@ import type { Product } from "../platform/api";
 import { usePlatform } from "../platform/hooks";
 import * as classes from "./overview.style";
 
-const PRODUCT_META: Record<Product, { label: string; icon: React.ReactNode }> = {
-  compose: { label: "Compose", icon: <Database size={16} /> },
-  codeblocks: { label: "Codeblocks", icon: <Code size={16} /> },
-  analytics: { label: "Analytics", icon: <BarChart3 size={16} /> },
-};
+const PRODUCT_META: Record<Product, { label: string; icon: React.ReactNode }> =
+  {
+    compose: { label: "Compose", icon: <Database size={16} /> },
+    codeblocks: { label: "Codeblocks", icon: <Code size={16} /> },
+    analytics: { label: "Analytics", icon: <BarChart3 size={16} /> },
+  };
 
 const ALL_PRODUCTS: Product[] = ["compose", "codeblocks", "analytics"];
 

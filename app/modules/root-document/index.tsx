@@ -1,5 +1,11 @@
 import { AuthProvider } from "@operonstudio/auth";
-import { Box, ThemeProvider, Toaster, TopProgressBar } from "@operonstudio/ui";
+import {
+  Box,
+  ThemeProvider,
+  Toaster,
+  TopProgressBar,
+  themeBootScript,
+} from "@operonstudio/ui";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { HeadContent, Scripts, useLocation } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
@@ -37,10 +43,14 @@ export const RootDocument = ({ children }: { children: React.ReactNode }) => {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: themeBootScript }}
+        />
         <HeadContent />
       </head>
       <body>
-        <ThemeProvider defaultDark={false}>
+        <ThemeProvider>
           <AuthProvider>
             <TopProgressBar />
             <Toaster />
