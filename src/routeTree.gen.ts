@@ -10,14 +10,25 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as StudioRouteRouteImport } from './routes/studio/route'
 import { Route as ForgotIndexRouteImport } from './routes/forgot/index'
 import { Route as LoginIndexRouteImport } from './routes/login/index'
 import { Route as RegisterIndexRouteImport } from './routes/register/index'
 import { Route as StudioIndexRouteImport } from './routes/studio/index'
+import { Route as StudioConsolesIndexRouteImport } from './routes/studio/consoles/index'
+import { Route as StudioEnvironmentsIndexRouteImport } from './routes/studio/environments/index'
+import { Route as StudioKeysIndexRouteImport } from './routes/studio/keys/index'
+import { Route as StudioProjectsIndexRouteImport } from './routes/studio/projects/index'
+import { Route as StudioTeamIndexRouteImport } from './routes/studio/team/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudioRouteRoute = StudioRouteRouteImport.update({
+  id: '/studio',
+  path: '/studio',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ForgotIndexRoute = ForgotIndexRouteImport.update({
@@ -36,17 +47,48 @@ const RegisterIndexRoute = RegisterIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const StudioIndexRoute = StudioIndexRouteImport.update({
-  id: '/studio/',
-  path: '/studio/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => StudioRouteRoute,
+} as any)
+const StudioConsolesIndexRoute = StudioConsolesIndexRouteImport.update({
+  id: '/consoles/',
+  path: '/consoles/',
+  getParentRoute: () => StudioRouteRoute,
+} as any)
+const StudioEnvironmentsIndexRoute = StudioEnvironmentsIndexRouteImport.update({
+  id: '/environments/',
+  path: '/environments/',
+  getParentRoute: () => StudioRouteRoute,
+} as any)
+const StudioKeysIndexRoute = StudioKeysIndexRouteImport.update({
+  id: '/keys/',
+  path: '/keys/',
+  getParentRoute: () => StudioRouteRoute,
+} as any)
+const StudioProjectsIndexRoute = StudioProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => StudioRouteRoute,
+} as any)
+const StudioTeamIndexRoute = StudioTeamIndexRouteImport.update({
+  id: '/team/',
+  path: '/team/',
+  getParentRoute: () => StudioRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/studio': typeof StudioRouteRouteWithChildren
   '/forgot/': typeof ForgotIndexRoute
   '/login/': typeof LoginIndexRoute
   '/register/': typeof RegisterIndexRoute
   '/studio/': typeof StudioIndexRoute
+  '/studio/consoles/': typeof StudioConsolesIndexRoute
+  '/studio/environments/': typeof StudioEnvironmentsIndexRoute
+  '/studio/keys/': typeof StudioKeysIndexRoute
+  '/studio/projects/': typeof StudioProjectsIndexRoute
+  '/studio/team/': typeof StudioTeamIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,29 +96,73 @@ export interface FileRoutesByTo {
   '/login': typeof LoginIndexRoute
   '/register': typeof RegisterIndexRoute
   '/studio': typeof StudioIndexRoute
+  '/studio/consoles': typeof StudioConsolesIndexRoute
+  '/studio/environments': typeof StudioEnvironmentsIndexRoute
+  '/studio/keys': typeof StudioKeysIndexRoute
+  '/studio/projects': typeof StudioProjectsIndexRoute
+  '/studio/team': typeof StudioTeamIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/studio': typeof StudioRouteRouteWithChildren
   '/forgot/': typeof ForgotIndexRoute
   '/login/': typeof LoginIndexRoute
   '/register/': typeof RegisterIndexRoute
   '/studio/': typeof StudioIndexRoute
+  '/studio/consoles/': typeof StudioConsolesIndexRoute
+  '/studio/environments/': typeof StudioEnvironmentsIndexRoute
+  '/studio/keys/': typeof StudioKeysIndexRoute
+  '/studio/projects/': typeof StudioProjectsIndexRoute
+  '/studio/team/': typeof StudioTeamIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/forgot/' | '/login/' | '/register/' | '/studio/'
+  fullPaths:
+    | '/'
+    | '/studio'
+    | '/forgot/'
+    | '/login/'
+    | '/register/'
+    | '/studio/'
+    | '/studio/consoles/'
+    | '/studio/environments/'
+    | '/studio/keys/'
+    | '/studio/projects/'
+    | '/studio/team/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/forgot' | '/login' | '/register' | '/studio'
-  id: '__root__' | '/' | '/forgot/' | '/login/' | '/register/' | '/studio/'
+  to:
+    | '/'
+    | '/forgot'
+    | '/login'
+    | '/register'
+    | '/studio'
+    | '/studio/consoles'
+    | '/studio/environments'
+    | '/studio/keys'
+    | '/studio/projects'
+    | '/studio/team'
+  id:
+    | '__root__'
+    | '/'
+    | '/studio'
+    | '/forgot/'
+    | '/login/'
+    | '/register/'
+    | '/studio/'
+    | '/studio/consoles/'
+    | '/studio/environments/'
+    | '/studio/keys/'
+    | '/studio/projects/'
+    | '/studio/team/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  StudioRouteRoute: typeof StudioRouteRouteWithChildren
   ForgotIndexRoute: typeof ForgotIndexRoute
   LoginIndexRoute: typeof LoginIndexRoute
   RegisterIndexRoute: typeof RegisterIndexRoute
-  StudioIndexRoute: typeof StudioIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -86,6 +172,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/studio': {
+      id: '/studio'
+      path: '/studio'
+      fullPath: '/studio'
+      preLoaderRoute: typeof StudioRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/forgot/': {
@@ -111,20 +204,77 @@ declare module '@tanstack/react-router' {
     }
     '/studio/': {
       id: '/studio/'
-      path: '/studio'
+      path: '/'
       fullPath: '/studio/'
       preLoaderRoute: typeof StudioIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof StudioRouteRoute
+    }
+    '/studio/consoles/': {
+      id: '/studio/consoles/'
+      path: '/consoles'
+      fullPath: '/studio/consoles/'
+      preLoaderRoute: typeof StudioConsolesIndexRouteImport
+      parentRoute: typeof StudioRouteRoute
+    }
+    '/studio/environments/': {
+      id: '/studio/environments/'
+      path: '/environments'
+      fullPath: '/studio/environments/'
+      preLoaderRoute: typeof StudioEnvironmentsIndexRouteImport
+      parentRoute: typeof StudioRouteRoute
+    }
+    '/studio/keys/': {
+      id: '/studio/keys/'
+      path: '/keys'
+      fullPath: '/studio/keys/'
+      preLoaderRoute: typeof StudioKeysIndexRouteImport
+      parentRoute: typeof StudioRouteRoute
+    }
+    '/studio/projects/': {
+      id: '/studio/projects/'
+      path: '/projects'
+      fullPath: '/studio/projects/'
+      preLoaderRoute: typeof StudioProjectsIndexRouteImport
+      parentRoute: typeof StudioRouteRoute
+    }
+    '/studio/team/': {
+      id: '/studio/team/'
+      path: '/team'
+      fullPath: '/studio/team/'
+      preLoaderRoute: typeof StudioTeamIndexRouteImport
+      parentRoute: typeof StudioRouteRoute
     }
   }
 }
 
+interface StudioRouteRouteChildren {
+  StudioIndexRoute: typeof StudioIndexRoute
+  StudioConsolesIndexRoute: typeof StudioConsolesIndexRoute
+  StudioEnvironmentsIndexRoute: typeof StudioEnvironmentsIndexRoute
+  StudioKeysIndexRoute: typeof StudioKeysIndexRoute
+  StudioProjectsIndexRoute: typeof StudioProjectsIndexRoute
+  StudioTeamIndexRoute: typeof StudioTeamIndexRoute
+}
+
+const StudioRouteRouteChildren: StudioRouteRouteChildren = {
+  StudioIndexRoute: StudioIndexRoute,
+  StudioConsolesIndexRoute: StudioConsolesIndexRoute,
+  StudioEnvironmentsIndexRoute: StudioEnvironmentsIndexRoute,
+  StudioKeysIndexRoute: StudioKeysIndexRoute,
+  StudioProjectsIndexRoute: StudioProjectsIndexRoute,
+  StudioTeamIndexRoute: StudioTeamIndexRoute,
+}
+
+const StudioRouteRouteWithChildren = StudioRouteRoute._addFileChildren(
+  StudioRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  StudioRouteRoute: StudioRouteRouteWithChildren,
   ForgotIndexRoute: ForgotIndexRoute,
   LoginIndexRoute: LoginIndexRoute,
   RegisterIndexRoute: RegisterIndexRoute,
-  StudioIndexRoute: StudioIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -3,7 +3,9 @@ import { toast } from "@operonstudio/ui";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useState } from "react";
-import { registerApi, type RegisterPayload } from "../api";
+import type { ApiError } from "#/common/interface";
+import { readNextUrl } from "#/lib/next-url";
+import { type RegisterPayload, registerApi } from "../api";
 
 export const useRegisterPage = () => {
   const navigate = useNavigate();
@@ -12,31 +14,28 @@ export const useRegisterPage = () => {
     email: "",
     password: "",
   });
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, refresh } = useAuth();
 
   const handleAuthenticated = useCallback(() => {
-    const nextParam = new URLSearchParams(window.location.search).get("next");
-    if (nextParam) {
-      try {
-        const url = new URL(nextParam, window.location.origin);
-        window.location.replace(url.toString());
-        return;
-      } catch {
-        // Fall through to default navigation on malformed next param.
-      }
+    const next = readNextUrl();
+    if (next) {
+      window.location.replace(next);
+      return;
     }
     navigate({ to: "/studio", replace: true });
   }, [navigate]);
 
   const registerMutation = useMutation({
     mutationFn: (data: RegisterPayload) => registerApi(data),
-    onSuccess: () => {
+    onSuccess: async () => {
+      // Register signs the user in, so re-read the session before leaving for
+      // a product surface — otherwise its auth guard bounces them to login.
+      await refresh();
       handleAuthenticated();
       toast.success("Register Successful");
     },
-    onError: (err: any) => {
-      const msg = err?.body?.message || "Failed to Register";
-      toast.error(msg);
+    onError: (err: ApiError) => {
+      toast.error(err.body?.message || err.message || "Failed to register");
     },
   });
 

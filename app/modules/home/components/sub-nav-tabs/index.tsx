@@ -8,16 +8,24 @@ export const SubNavTabs = () => {
   const activeIndex = tabs.findIndex((tab) => tab.id === activeTab);
 
   const tabItems = tabs.map((tab) => ({
+    // A real button so the section can be reached by keyboard, not only by
+    // pointer. It fills the tab so the whole tab stays clickable.
     label: (
-      <span
+      <button
+        type="button"
         onClick={(e) => {
           e.stopPropagation();
           scrollToSection(tab.targetId, tab.id);
         }}
-        style={{ cursor: "pointer", display: "inline-block", width: "100%" }}
+        style={{
+          all: "unset",
+          cursor: "pointer",
+          display: "inline-block",
+          width: "100%",
+        }}
       >
         {tab.label}
-      </span>
+      </button>
     ),
     content: null,
   }));

@@ -1,6 +1,6 @@
 import { Box, Button, Card } from "@operonstudio/ui";
 import { type CSSProperties, Fragment } from "react";
-import { HERO_CARDS } from "../../data";
+import type { HERO_CARDS } from "../../data";
 import * as classes from "./style";
 
 type HeroCardData = (typeof HERO_CARDS)[number];

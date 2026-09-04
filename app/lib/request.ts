@@ -1,6 +1,6 @@
-import { ENDPOINTS } from "#/common/endpoint";
 import { createClient } from "@operonstudio/request";
 import { withAuth } from "@operonstudio/request/middleware";
+import { ENDPOINTS } from "#/common/endpoint";
 
 // API calls now go through same-origin server proxy routes (/api/auth/*)
 // so credentials: include is not needed.

@@ -87,11 +87,7 @@ export const MobileDrawer = ({
           </>
         ) : (
           <>
-            <Link
-              to="/login"
-              {...classes.mobileNavLinkStyle}
-              onClick={onClose}
-            >
+            <Link to="/login" {...classes.mobileNavLinkStyle} onClick={onClose}>
               Sign in
             </Link>
             <Link

@@ -16,9 +16,9 @@ export const HeroLeft = ({ metrics }: HeroLeftProps) => {
 
       <Box {...classes.heroSubtitleStyle}>
         Operon is the zero-release layer between your frontend and
-        infrastructure. Change content, business rules, and analytics
-        tagging visually. Compose high-performance backend flows from
-        reusable codeblocks — all from one cloud console.
+        infrastructure. Change content, business rules, and analytics tagging
+        visually. Compose high-performance backend flows from reusable
+        codeblocks — all from one cloud console.
       </Box>
 
       <Box {...classes.heroCTAContainerStyle}>

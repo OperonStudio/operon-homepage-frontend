@@ -1,3 +1,4 @@
+import type { IconProps } from "@operonstudio/icons";
 import {
   BarChart3,
   Boxes,
@@ -12,26 +13,10 @@ import {
   Workflow,
   Zap,
 } from "@operonstudio/icons";
-import type { IconProps } from "@operonstudio/icons";
 
-const isProdDomain =
-  typeof window !== "undefined" &&
-  window.location.hostname.endsWith("operonstudio.tech");
+import { ANALYTICS_URL, CODEBLOCKS_URL, COMPOSE_URL } from "#/common/products";
 
-export const COMPOSE_URL =
-  isProdDomain || import.meta.env.PROD
-    ? "https://compose.operonstudio.tech"
-    : (import.meta.env.VITE_COMPOSE_URL ?? "http://localhost:4000");
-
-export const CODEBLOCKS_URL =
-  isProdDomain || import.meta.env.PROD
-    ? "https://codeblocks.operonstudio.tech"
-    : (import.meta.env.VITE_CODEBLOCKS_URL ?? "http://localhost:4002");
-
-export const ANALYTICS_URL =
-  isProdDomain || import.meta.env.PROD
-    ? "https://analytics.operonstudio.tech"
-    : (import.meta.env.VITE_ANALYTICS_URL ?? "http://localhost:4003");
+export { ANALYTICS_URL, CODEBLOCKS_URL, COMPOSE_URL };
 
 export interface Service {
   name: string;
@@ -63,34 +48,28 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         href: `${COMPOSE_URL}/rule-engine`,
         icon: Layers,
       },
-      {
-        name: "Environments",
-        description: "Manage staging, production, and custom environments",
-        href: `${COMPOSE_URL}/environments`,
-        icon: Globe,
-      },
     ],
   },
   {
     title: "Backend Orchestration",
     services: [
       {
-        name: "Codeblocks",
-        description: "Build reusable backend logic modules",
-        href: `${CODEBLOCKS_URL}/codeblocks`,
+        name: "Blocks",
+        description: "Each block is an endpoint. Compose them into modules.",
+        href: `${CODEBLOCKS_URL}/blocks`,
         icon: Code,
+        badge: "Core",
       },
       {
-        name: "Flow Builder",
-        description: "Visually wire and orchestrate API flows",
-        href: `${CODEBLOCKS_URL}/codeblocks`,
+        name: "Runs",
+        description: "What the block endpoints did, step by step",
+        href: `${CODEBLOCKS_URL}/runs`,
         icon: Workflow,
-        badge: "Popular",
       },
       {
-        name: "API Explorer",
-        description: "Test and inspect your Operon API endpoints",
-        href: `${CODEBLOCKS_URL}/marketplace`,
+        name: "Calling blocks",
+        description: "How to call a block from your own code",
+        href: `${CODEBLOCKS_URL}/setup`,
         icon: Terminal,
       },
     ],
@@ -117,28 +96,44 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         href: `${ANALYTICS_URL}/dashboard`,
         icon: BarChart3,
       },
+      {
+        name: "Install the SDK",
+        description: "Add Operon to your app and confirm events arrive",
+        href: `${ANALYTICS_URL}/setup`,
+        icon: Terminal,
+      },
     ],
   },
   {
-    title: "Infrastructure",
+    // These are the platform's, not a product's, and they are managed on this
+    // page rather than inside Compose. Sending someone to Compose to add a
+    // teammate meant a customer using only Analytics had to open a product they
+    // were not using in order to administer the one they were.
+    title: "Platform",
     services: [
       {
-        name: "Workspaces",
-        description: "Organize projects and team collaboration",
-        href: `${COMPOSE_URL}/projects`,
+        name: "Workspaces & Team",
+        description: "Workspaces, members and invitations",
+        href: "#platform",
         icon: Boxes,
         badge: "Core",
       },
       {
-        name: "SDK Manager",
-        description: "Install and configure the Operon SDK",
-        href: `${COMPOSE_URL}/api-keys`,
+        name: "Environments",
+        description: "Development, staging, production and anything else",
+        href: "#platform",
+        icon: Globe,
+      },
+      {
+        name: "Projects",
+        description: "Your apps, and which products each one uses",
+        href: "#platform",
         icon: Network,
       },
       {
         name: "Access & Keys",
-        description: "Manage API keys and access permissions",
-        href: `${COMPOSE_URL}/api-keys`,
+        description: "Issue and revoke project API keys per environment",
+        href: "#platform",
         icon: KeyRound,
       },
     ],

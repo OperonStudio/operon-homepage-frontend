@@ -7,7 +7,10 @@ interface DesktopAuthProps {
   onLogout: () => void;
 }
 
-export const DesktopAuthButtons = ({ isLoggedIn, onLogout }: DesktopAuthProps) => {
+export const DesktopAuthButtons = ({
+  isLoggedIn,
+  onLogout,
+}: DesktopAuthProps) => {
   return (
     <Box {...classes.desktopAuthStyle}>
       {isLoggedIn ? (

@@ -62,7 +62,7 @@ export const LoginPage = () => {
           Don&apos;t have an account?{" "}
           <Link
             to="/register"
-            search={(prev: any) => prev}
+            search={(prev) => prev}
             {...classes.authLinkStyle}
           >
             Create one

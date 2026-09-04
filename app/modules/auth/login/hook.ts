@@ -3,7 +3,9 @@ import { toast } from "@operonstudio/ui";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useState } from "react";
-import { loginApi, type LoginPayload } from "../api";
+import type { ApiError } from "#/common/interface";
+import { readNextUrl } from "#/lib/next-url";
+import { type LoginPayload, loginApi } from "../api";
 
 export const useLoginPage = () => {
   const navigate = useNavigate();
@@ -20,20 +22,16 @@ export const useLoginPage = () => {
       handleAuthenticated();
       toast.success("Login Successful");
     },
-    onError: (err: any) => {
-      const msg = err?.body?.message || "Failed to Login";
-      toast.error(msg);
+    onError: (err: ApiError) => {
+      toast.error(err.body?.message || err.message || "Failed to log in");
     },
   });
 
   const handleAuthenticated = useCallback(() => {
-    const nextParam = new URLSearchParams(window.location.search).get("next");
-    if (nextParam) {
-      const url = new URL(nextParam, window.location.origin);
-      if (url.origin !== window.location.origin) {
-        window.location.replace(url.toString());
-        return;
-      }
+    const next = readNextUrl();
+    if (next) {
+      window.location.replace(next);
+      return;
     }
     navigate({ to: "/studio", replace: true });
   }, [navigate]);

@@ -18,60 +18,58 @@ export const SiteHeader = () => {
   } = useSiteHeader();
 
   return (
-    <>
-      <Box {...classes.headerStyle}>
-        <Box {...classes.headerLeftStyle}>
-          <Link to="/" {...classes.logoStyle} aria-label="Operon Homepage">
-            <img
-              src="/operon-lockup.svg"
-              alt="Operon"
-              height="26"
-              style={{ display: "block" }}
-            />
-          </Link>
+    <Box {...classes.headerStyle}>
+      <Box {...classes.headerLeftStyle}>
+        <Link to="/" {...classes.logoStyle} aria-label="Operon Homepage">
+          <img
+            src="/operon-lockup.svg"
+            alt="Operon"
+            height="26"
+            style={{ display: "block" }}
+          />
+        </Link>
 
-          <nav aria-label="Main Navigation">
-            <ul {...classes.navListStyle}>
-              {/* Products Mega Menu with click toggle & click outside close */}
-              <ProductsMegaMenu />
+        <nav aria-label="Main Navigation">
+          <ul {...classes.navListStyle}>
+            {/* Products Mega Menu with click toggle & click outside close */}
+            <ProductsMegaMenu />
 
-              {/* Navigation Links */}
-              {mainNavLinks.map((link) => (
-                <li key={link.label} {...classes.navItemStyle}>
-                  <Link to={link.to} {...classes.navButtonLinkStyle}>
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </Box>
-
-        {/* Right Section: Search & Auth */}
-        <Box {...classes.headerRightStyle}>
-          <DesktopAuthButtons isLoggedIn={isLoggedIn} onLogout={handleLogout} />
-
-          {/* Mobile Menu Toggle Button */}
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={toggleMobileMenu}
-            aria-label="Toggle mobile menu"
-            {...classes.mobileMenuToggleStyle}
-            style={{ padding: "6px", minWidth: "auto" }}
-          >
-            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </Button>
-        </Box>
-
-        {/* Mobile Navigation Drawer */}
-        <MobileDrawer
-          isOpen={isMobileMenuOpen}
-          isLoggedIn={isLoggedIn}
-          onClose={closeMobileMenu}
-          onLogout={handleLogout}
-        />
+            {/* Navigation Links */}
+            {mainNavLinks.map((link) => (
+              <li key={link.label} {...classes.navItemStyle}>
+                <Link to={link.to} {...classes.navButtonLinkStyle}>
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </Box>
-    </>
+
+      {/* Right Section: Search & Auth */}
+      <Box {...classes.headerRightStyle}>
+        <DesktopAuthButtons isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+
+        {/* Mobile Menu Toggle Button */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={toggleMobileMenu}
+          aria-label="Toggle mobile menu"
+          {...classes.mobileMenuToggleStyle}
+          style={{ padding: "6px", minWidth: "auto" }}
+        >
+          {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </Button>
+      </Box>
+
+      {/* Mobile Navigation Drawer */}
+      <MobileDrawer
+        isOpen={isMobileMenuOpen}
+        isLoggedIn={isLoggedIn}
+        onClose={closeMobileMenu}
+        onLogout={handleLogout}
+      />
+    </Box>
   );
 };

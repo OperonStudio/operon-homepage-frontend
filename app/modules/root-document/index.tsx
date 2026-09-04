@@ -1,16 +1,24 @@
-import { isDev } from "#/lib";
-import TanStackQueryDevtools from "@/integrations/tanstack-query/devtools";
 import { AuthProvider } from "@operonstudio/auth";
 import { Box, ThemeProvider, Toaster, TopProgressBar } from "@operonstudio/ui";
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import { HeadContent, Scripts } from "@tanstack/react-router";
+import { HeadContent, Scripts, useLocation } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { isDev } from "#/lib";
+import TanStackQueryDevtools from "@/integrations/tanstack-query/devtools";
 import { AnnouncementBanner } from "./components/announcement-banner";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
 import * as classes from "./style";
 
 function RootLayout({ children }: { children: React.ReactNode }) {
+  // Studio brings its own shell: a sidebar, a topbar and a user menu. Wrapping
+  // it in the marketing site's chrome as well stacked two headers on top of
+  // each other and put a pricing nav above a console.
+  const { pathname } = useLocation();
+  const isConsole = pathname === "/studio" || pathname.startsWith("/studio/");
+
+  if (isConsole) return <>{children}</>;
+
   return (
     <>
       <Box {...classes.stickyTopContainerStyle}>
@@ -47,7 +55,7 @@ export const RootDocument = ({ children }: { children: React.ReactNode }) => {
                     name: "TanStack Router",
                     render: <TanStackRouterDevtoolsPanel />,
                   },
-                  TanStackQueryDevtools as any,
+                  TanStackQueryDevtools,
                 ]}
               />
             )}

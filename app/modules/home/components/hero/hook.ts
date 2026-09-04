@@ -18,7 +18,7 @@ export const useHero = () => {
       const count = HERO_CARDS.length;
       return (cardIndex - activeIndex + count) % count;
     },
-    [activeCardId]
+    [activeCardId],
   );
 
   useEffect(() => {

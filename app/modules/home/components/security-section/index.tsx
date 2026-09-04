@@ -14,8 +14,8 @@ export const SecuritySection = () => {
         </h2>
         <Box {...classes.sectionDescStyle}>
           Operon is engineered from the ground up for high-compliance workloads,
-          protecting sensitive enterprise operations with zero-trust key management
-          and sub-10ms global edge delivery.
+          protecting sensitive enterprise operations with zero-trust key
+          management and sub-10ms global edge delivery.
         </Box>
 
         <Box {...classes.securityGridStyle}>
@@ -31,7 +31,10 @@ export const SecuritySection = () => {
                   }}
                 >
                   <Box {...classes.securityStatStyle}>{item.stat}</Box>
-                  <Box {...classes.securityIconWrapperStyle} data-icon-well="true">
+                  <Box
+                    {...classes.securityIconWrapperStyle}
+                    data-icon-well="true"
+                  >
                     <Icon size={16} />
                   </Box>
                 </Box>
